@@ -70,7 +70,6 @@ public class AdminDB1 extends javax.swing.JFrame {
         txt_CorreoRV = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_ClaveRV = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txt_IdentificacionRV = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -78,6 +77,7 @@ public class AdminDB1 extends javax.swing.JFrame {
         labelTotal = new javax.swing.JLabel();
         txt_NombreRv1 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
+        pass_RV = new javax.swing.JPasswordField();
         pnconfig = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -279,13 +279,6 @@ public class AdminDB1 extends javax.swing.JFrame {
         jLabel7.setText("Correo");
         jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        txt_ClaveRV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_ClaveRVActionPerformed(evt);
-            }
-        });
-        jPanel6.add(txt_ClaveRV, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 110, -1));
-
         jLabel14.setText("Clave");
         jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
         jPanel6.add(txt_IdentificacionRV, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 110, -1));
@@ -305,6 +298,13 @@ public class AdminDB1 extends javax.swing.JFrame {
 
         jLabel18.setText("Nombre");
         jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+
+        pass_RV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pass_RVActionPerformed(evt);
+            }
+        });
+        jPanel6.add(pass_RV, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 110, -1));
 
         jTabbedPane1.addTab("Registrar Vendedor", jPanel6);
 
@@ -460,9 +460,9 @@ public class AdminDB1 extends javax.swing.JFrame {
         String nombre, correo, clave;
         
         int ID = Integer.parseInt(this.txt_IdentificacionRV.getText());
-        nombre = txt_ClaveRV.getText();
+        nombre = txt_NombreRv1.getText();
         correo = txt_IdentificacionRV.getText();
-        clave = txt_ClaveRV.getText();
+        clave = pass_RV.getText();
         
         Vendedor vendedor2 = new Vendedor (ID,nombre);
         vendedor2.setCorreo(correo);
@@ -474,13 +474,13 @@ public class AdminDB1 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_registrarActionPerformed
 
-    private void txt_ClaveRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ClaveRVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_ClaveRVActionPerformed
-
     private void txt_CorreoRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CorreoRVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_CorreoRVActionPerformed
+
+    private void pass_RVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass_RVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pass_RVActionPerformed
     
     
 
@@ -556,9 +556,9 @@ public class AdminDB1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelTotal;
+    private javax.swing.JPasswordField pass_RV;
     private javax.swing.JPanel pnconfig;
     private javax.swing.JPanel pndash;
-    private javax.swing.JTextField txt_ClaveRV;
     private javax.swing.JTextField txt_CorreoRV;
     private javax.swing.JTextField txt_IdentificacionRV;
     private javax.swing.JTextField txt_NombreRv1;
