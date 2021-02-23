@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class VendedorDAO {
  private static final String SQL_READ_ALL="SELECT * FROM vendedor";
-    private static final String SQL_INSERT="INSERT INTO vendedor (ID,ID_factura, nombre) VALUES (?,?,?)";
+    private static final String SQL_INSERT="INSERT INTO vendedor (ID, nombre) VALUES (?,?)";
     private static final String SQL_DELETE="DELETE FROM vendedor WHERE ID = ?";
     private static final String SQL_UPDATE="UPDATE vendedor set  ID_factura= ?, nombre =? WHERE ID = ?";
     private static final String SQL_READ="SELECT * FROM vendedor where ID = ?";
@@ -60,8 +60,7 @@ public class VendedorDAO {
          try {
             ps= con.prepareStatement(SQL_INSERT);
             ps.setInt(1, c.getID());
-            ps.setInt(2, c.getID_factura());
-            ps.setString(3, c.getNombre());
+            ps.setString(2, c.getNombre());
             if(ps.executeUpdate()>0){
                 return true;
             }

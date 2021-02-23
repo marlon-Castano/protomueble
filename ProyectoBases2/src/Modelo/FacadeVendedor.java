@@ -30,6 +30,15 @@ public class FacadeVendedor {
         return lst;
     }
     
+    public boolean Crearvendedor(Vendedor objP){
+        boolean rta=false;
+        if(objP !=null){
+            VendedorDAO dao= new VendedorDAO();
+            rta= dao.insertLogin(objP);
+        }
+        return rta;
+    }
+    
     public Vendedor verCliente(Vendedor item){
         Vendedor dto;
         VendedorDAO dao = new VendedorDAO();

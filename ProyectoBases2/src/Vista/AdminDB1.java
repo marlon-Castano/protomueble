@@ -10,6 +10,7 @@ import Modelo.DAO.FacturaDAO;
 import Modelo.FacadeCliente;
 import Modelo.FacadeFactura;
 import Modelo.FacadeProducto;
+import Modelo.FacadeVendedor;
 import Modelo.Vendedor;
 import Modelo.Producto;
 import Modelo.cliente;
@@ -22,28 +23,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Julian
  */
-public class VendedorDB extends javax.swing.JFrame {
+public class AdminDB1 extends javax.swing.JFrame {
 
     /**
      * Creates new form VendedorDB
      */
-    Vendedor vendedor = new Vendedor();
+    
 
-    public VendedorDB() {
+    public AdminDB1() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
-    public VendedorDB(Vendedor vende) {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.vendedor = vende;
-        cagarTabla();
-        FacadeProducto facaP = new FacadeProducto();
-        for (Producto p : facaP.ListarProductos()) {
-            boxproducto.addItem(p.getNombre());
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,32 +65,19 @@ public class VendedorDB extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaVentas = new javax.swing.JTable();
-        nombre_vendedor = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txt_Identificacion = new javax.swing.JTextField();
+        txt_CorreoRV = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_nombre = new javax.swing.JTextField();
+        txt_ClaveRV = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        txt_correo = new javax.swing.JTextField();
+        txt_IdentificacionRV = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        txt_direccion = new javax.swing.JTextField();
-        txt_telefono = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        boxproducto = new javax.swing.JComboBox<>();
-        jLabel20 = new javax.swing.JLabel();
-        check_envio = new javax.swing.JCheckBox();
         btn_registrar = new javax.swing.JButton();
-        jLabel21 = new javax.swing.JLabel();
-        CheckCiudad = new javax.swing.JCheckBox();
         labelTotal = new javax.swing.JLabel();
+        txt_NombreRv1 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
         pnconfig = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -120,7 +98,7 @@ public class VendedorDB extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Vendedor ProntoMueble");
+        jLabel2.setText("Admin ProntoMueble");
         jLabel2.setOpaque(true);
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 255));
@@ -281,85 +259,39 @@ public class VendedorDB extends javax.swing.JFrame {
 
         jTabbedPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jPanel10.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/caja-de-efectivo.png"))); // NOI18N
-        jPanel10.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, 70));
-
-        tablaVentas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tablaVentas);
-
-        jPanel10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 700, 310));
-
-        nombre_vendedor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 28)); // NOI18N
-        nombre_vendedor.setText("jLabel21");
-        jPanel10.add(nombre_vendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 260, 60));
-
-        jTabbedPane1.addTab("Mis ventas", jPanel10);
-
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
         jPanel6.setOpaque(false);
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bolsa-de-la-compra.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/idea.png"))); // NOI18N
         jPanel6.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, -1, -1));
 
-        jLabel5.setText("Telefono");
-        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
-
-        txt_Identificacion.addActionListener(new java.awt.event.ActionListener() {
+        txt_CorreoRV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_IdentificacionActionPerformed(evt);
+                txt_CorreoRVActionPerformed(evt);
             }
         });
-        jPanel6.add(txt_Identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 110, -1));
+        jPanel6.add(txt_CorreoRV, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 110, -1));
 
-        jLabel6.setText("Gestion de Clientes");
+        jLabel6.setText("Registro vendedores");
         jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
 
-        jLabel7.setText("Identificacion");
+        jLabel7.setText("Correo");
         jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
+        txt_ClaveRV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombreActionPerformed(evt);
+                txt_ClaveRVActionPerformed(evt);
             }
         });
-        jPanel6.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 110, -1));
+        jPanel6.add(txt_ClaveRV, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 110, -1));
 
-        jLabel14.setText("Nombre");
+        jLabel14.setText("Clave");
         jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
-        jPanel6.add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 110, -1));
+        jPanel6.add(txt_IdentificacionRV, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 110, -1));
 
-        jLabel17.setText("Correo");
-        jPanel6.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
-
-        jLabel18.setText("Direccion");
-        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
-        jPanel6.add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 110, -1));
-        jPanel6.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 110, -1));
-
-        jLabel19.setText("Productos");
-        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
-
-        jPanel6.add(boxproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 180, -1));
-
-        jLabel20.setText("Envio ");
-        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
-
-        check_envio.setText("Si");
-        jPanel6.add(check_envio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+        jLabel17.setText("Identificacion");
+        jPanel6.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
         btn_registrar.setText("Registrar Venta");
         btn_registrar.addActionListener(new java.awt.event.ActionListener() {
@@ -367,21 +299,14 @@ public class VendedorDB extends javax.swing.JFrame {
                 btn_registrarActionPerformed(evt);
             }
         });
-        jPanel6.add(btn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, -1, -1));
-
-        jLabel21.setText("Bogotá");
-        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
-
-        CheckCiudad.setText("Si");
-        CheckCiudad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckCiudadActionPerformed(evt);
-            }
-        });
-        jPanel6.add(CheckCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
+        jPanel6.add(btn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
         jPanel6.add(labelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 180, 30));
+        jPanel6.add(txt_NombreRv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 110, -1));
 
-        jTabbedPane1.addTab("Registrar Venta", jPanel6);
+        jLabel18.setText("Nombre");
+        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+
+        jTabbedPane1.addTab("Registrar Vendedor", jPanel6);
 
         javax.swing.GroupLayout pndashLayout = new javax.swing.GroupLayout(pndash);
         pndash.setLayout(pndashLayout);
@@ -531,94 +456,33 @@ public class VendedorDB extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnExitMouseClicked
 
-    private void CheckCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckCiudadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckCiudadActionPerformed
-
-    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombreActionPerformed
-
-    private void txt_IdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_IdentificacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_IdentificacionActionPerformed
-
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
-        String nombre, correo, direcion, telefono, producto;
-
-        int indetenficacion = Integer.parseInt(this.txt_Identificacion.getText());
-        nombre = txt_nombre.getText();
-        correo = txt_correo.getText();
-        direcion = txt_direccion.getText();
-        telefono = txt_telefono.getText();
-        producto = (String) this.boxproducto.getSelectedItem();
-        boolean envio = check_envio.isSelected();
-        boolean lugar = CheckCiudad.isSelected();
-        int precio = calcularPrecio(producto, lugar, envio);
-        cliente cliente2 = new cliente(indetenficacion, nombre, correo, direcion);
-        cliente2.setTelefono(telefono);
-        Date fecha0 = new Date();
-        java.sql.Date fecha = new java.sql.Date(fecha0.getTime());
-        factura factu = new factura(vendedor.getID(), cliente2.getIdentificacion(), envio, precio, fecha);
-        FacadeFactura facaF = new FacadeFactura();
-        FacadeCliente facaC = new FacadeCliente();
-        if(exitscliente(cliente2)){
-             facaF.CrearFactura(factu);
-        }else{
-            if (facaC.CrearCliente(cliente2)) {
-            facaF.CrearFactura(factu);
-            }
-        }
+        String nombre, correo, clave;
         
+        int ID = Integer.parseInt(this.txt_IdentificacionRV.getText());
+        nombre = txt_ClaveRV.getText();
+        correo = txt_IdentificacionRV.getText();
+        clave = txt_ClaveRV.getText();
+        
+        Vendedor vendedor2 = new Vendedor (ID,nombre);
+        vendedor2.setCorreo(correo);
+        vendedor2.setClave(clave);
+        FacadeVendedor facaV = new FacadeVendedor();
+        
+        facaV.Crearvendedor(vendedor2);
 
 
     }//GEN-LAST:event_btn_registrarActionPerformed
-    
-    
-    private void cagarTabla() {
-        this.nombre_vendedor.setText(vendedor.getNombre());
-        FacadeFactura objF = new FacadeFactura();
-        List<factura> lista = objF.TraerFactura();
-        DefaultTableModel tb = (DefaultTableModel) this.tablaVentas.getModel();
-        tb.getDataVector().clear();
-        tb.setColumnIdentifiers(new String[]{
-            "id", "ID vendedor", "Numero de identificacion cliente", "precio","Fecha"});
-        if (lista != null) {
-            for (factura i : lista) {
-               if(vendedor.getID()==i.getID_vendedor()){
-                    tb.addRow(new Object[]{i.getID_factu(), i.getID_vendedor(), i.getID_cliente(), i.getPrecio_total(),i.getFecha()});
-               }
-            }
-        }
-    }
-    private boolean exitscliente(cliente cli){
-        boolean exits=false;
-        FacadeCliente facaC = new FacadeCliente();
-        for(cliente ob: facaC.ListarClientes()){
-            if(ob.getIdentificacion()==cli.getIdentificacion()){
-                return true;
-            }
-        }
-        return exits;
-    }
-    private int calcularPrecio(String nombre, boolean ciudad, boolean envio) {
-        int total = 0;
-        FacadeProducto facaP = new FacadeProducto();
-        Producto producto = new Producto();
-        producto = facaP.verProductoNombre(nombre);
-        if (envio) {
-            if (ciudad) {
-                total = producto.getPrecio() + 40000;
 
-            } else {
-                total = producto.getPrecio() + 100000;
-            }
-        }else{
-            total=producto.getPrecio();
-        }
-        this.labelTotal.setText("TOTAL: " + total);
-        return total;
-    }
+    private void txt_ClaveRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ClaveRVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_ClaveRVActionPerformed
+
+    private void txt_CorreoRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CorreoRVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_CorreoRVActionPerformed
+    
+    
 
     /**
      * @param args the command line arguments
@@ -637,34 +501,32 @@ public class VendedorDB extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VendedorDB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDB1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VendedorDB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDB1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VendedorDB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDB1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VendedorDB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDB1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendedorDB().setVisible(true);
+                new AdminDB1().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox CheckCiudad;
     private javax.swing.JTextField Identificacion;
-    private javax.swing.JComboBox<String> boxproducto;
     private javax.swing.JLabel btnConfig;
     private javax.swing.JLabel btnDash;
     private javax.swing.JLabel btnExit;
     private javax.swing.JButton btn_registrar;
     private javax.swing.JButton btneditar;
-    private javax.swing.JCheckBox check_envio;
     private javax.swing.JPasswordField contraseña_V;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -673,43 +535,33 @@ public class VendedorDB extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelTotal;
-    private javax.swing.JLabel nombre_vendedor;
     private javax.swing.JPanel pnconfig;
     private javax.swing.JPanel pndash;
-    private javax.swing.JTable tablaVentas;
-    private javax.swing.JTextField txt_Identificacion;
+    private javax.swing.JTextField txt_ClaveRV;
+    private javax.swing.JTextField txt_CorreoRV;
+    private javax.swing.JTextField txt_IdentificacionRV;
+    private javax.swing.JTextField txt_NombreRv1;
     private javax.swing.JTextField txt_NombreV;
-    private javax.swing.JTextField txt_correo;
-    private javax.swing.JTextField txt_direccion;
-    private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 }
