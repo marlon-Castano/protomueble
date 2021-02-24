@@ -10,6 +10,8 @@ import Modelo.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,6 +20,7 @@ import java.sql.SQLException;
 public class LoginDAO {
 
     private static final String SQL_INSERT_Login = "INSERT INTO login (ID_VENDEDOR, clave,correo) VALUES (?,?,?)";
+    private static final String SQL_UPDATE_Login = "UPDATE login set correo = ?, clave =? WHERE ID_VENDEDOR = ?";
     private Connection con = conexion.obtenerConexion();
 
     public boolean insertLogin(Vendedor c) {
@@ -37,6 +40,25 @@ public class LoginDAO {
             } finally {
                 conexion.cerrarConexion();
             }
+        }
+        return false;
+        
+        
+    }
+    
+    public boolean update_Login(Vendedor item) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_UPDATE_Login);
+            ps.setString(1, item.getCorreo());
+            ps.setString(2, item.getClave());
+            ps.setInt(3, item.getID());
+            ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conexion.cerrarConexion();
         }
         return false;
     }
