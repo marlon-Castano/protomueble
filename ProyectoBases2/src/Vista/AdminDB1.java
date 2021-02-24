@@ -7,6 +7,8 @@ package Vista;
 
 import Modelo.DAO.ClienteDAO;
 import Modelo.DAO.FacturaDAO;
+import Modelo.DAO.LoginDAO;
+import Modelo.DAO.VendedorDAO;
 import Modelo.FacadeCliente;
 import Modelo.FacadeFactura;
 import Modelo.FacadeProducto;
@@ -461,7 +463,7 @@ public class AdminDB1 extends javax.swing.JFrame {
         
         int ID = Integer.parseInt(this.txt_IdentificacionRV.getText());
         nombre = txt_NombreRv1.getText();
-        correo = txt_IdentificacionRV.getText();
+        correo = txt_CorreoRV.getText();
         clave = pass_RV.getText();
         
         Vendedor vendedor2 = new Vendedor (ID,nombre);
@@ -469,7 +471,12 @@ public class AdminDB1 extends javax.swing.JFrame {
         vendedor2.setClave(clave);
         FacadeVendedor facaV = new FacadeVendedor();
         
-        facaV.Crearvendedor(vendedor2);
+        
+        if(facaV.Crearvendedor(vendedor2)){
+            System.out.println(vendedor2.getCorreo());
+            LoginDAO obDAO = new LoginDAO();
+            obDAO.insertLogin(vendedor2);
+        }
 
 
     }//GEN-LAST:event_btn_registrarActionPerformed

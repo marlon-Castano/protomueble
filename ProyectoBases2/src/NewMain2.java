@@ -20,10 +20,10 @@ public class NewMain2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        VendedorDAO obj = new VendedorDAO();
-        Vendedor obj1 = new Vendedor();
-        obj1.setID(2);
-        System.out.println(obj.read(obj1).getNombre());
+        Vendedor ven = new Vendedor("123", "mscorreo");
+        ven.setID(1456782);
+        VendedorDAO obj= new VendedorDAO();
+        //obj.insertLogin(ven);
     }
     
 }

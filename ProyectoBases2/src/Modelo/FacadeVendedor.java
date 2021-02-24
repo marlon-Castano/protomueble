@@ -34,10 +34,13 @@ public class FacadeVendedor {
         boolean rta=false;
         if(objP !=null){
             VendedorDAO dao= new VendedorDAO();
-            rta= dao.insertLogin(objP);
+            rta=dao.insert(objP);
+            
         }
         return rta;
     }
+    
+  
     
     public Vendedor verCliente(Vendedor item){
         Vendedor dto;
@@ -65,12 +68,5 @@ public class FacadeVendedor {
         return rta;
     }
     
-    public boolean CrearLogin(Vendedor objP){
-        boolean rta=false;
-        if(objP !=null){
-            VendedorDAO dao= new VendedorDAO();
-            rta= dao.insertLogin(objP);
-        }
-        return rta;
-    }
+  
 }
