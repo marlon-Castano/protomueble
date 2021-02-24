@@ -87,5 +87,12 @@ public class FacadeProducto {
         return rta;
     }
     
+    public String caracteristicas(Producto pro){
+        String res="";
+        ProductoDAO dao = new ProductoDAO();
+        res=dao.caracteriscas(pro);
+        
+        return res;
+    }
   
 }

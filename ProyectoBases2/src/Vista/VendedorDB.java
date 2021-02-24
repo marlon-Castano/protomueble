@@ -428,7 +428,7 @@ public class VendedorDB extends javax.swing.JFrame {
         jPanel6.add(labelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 180, 30));
 
         lblCaracteristicas.setText("jLabel24");
-        jPanel6.add(lblCaracteristicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 290, 100));
+        jPanel6.add(lblCaracteristicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 280, 180));
 
         jTabbedPane1.addTab("Registrar Venta", jPanel6);
 
@@ -706,7 +706,12 @@ public class VendedorDB extends javax.swing.JFrame {
     }//GEN-LAST:event_boxproductoItemStateChanged
 
     private void boxproductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxproductoMouseClicked
-        lblCaracteristicas.setText("holii");
+        FacadeProducto facaP = new FacadeProducto();
+        Producto producto = new Producto();
+        String nombre = (String) this.boxproducto.getSelectedItem();
+        producto = facaP.verProductoNombre(nombre);
+        String res=facaP.caracteristicas(producto);
+        lblCaracteristicas.setText(res);
     }//GEN-LAST:event_boxproductoMouseClicked
     
     public static boolean Email (String email) {
