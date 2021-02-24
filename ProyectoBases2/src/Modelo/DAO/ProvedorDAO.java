@@ -25,7 +25,7 @@ public class ProvedorDAO {
     private static final String SQL_INSERT="INSERT INTO proveedor (ID_PR, direccion, nombre, contacto) VALUES (?,?,?,?)";
     private static final String SQL_UPDATE="UPDATE proveedor set  direccion= ?, nombre =?, contacto =? WHERE ID_PR = ?";
     private static final String SQL_READ="SELECT * FROM provedor where ID_PR = ?";
-    private static final String SQL_INSERT_TELEFONO="INSERT INTO provedor_telefono (ID_PR, telefono )  VALUES (?,?) ";
+    private static final String SQL_INSERT_TELEFONO="INSERT INTO provedor_telefono (ID_PR, Telefono )  VALUES (?,?) ";
     private static final String SQL_TELEFONO="SELECT * FROM provedor_telefono WHERE ID_PR = ?";
     private static final String SQL_DELETE_TELEFONO="DELETE FROM provedor_telefono WHERE ID_PR = ?";
     private static final String SQL_UPDATE_TELEFONO="UPDATE provedor_telefono set Telefono= ? WHERE ID_PR = ?";

@@ -6,6 +6,7 @@
 package Modelo.DAO;
 
 import Modelo.Producto;
+import Modelo.Provedor;
 import Modelo.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,12 +21,17 @@ import java.util.List;
  */
 public class ProductoDAO {
     private static final String SQL_READ_ALL="SELECT * FROM producto ";
-    private static final String SQL_INSERT="INSERT INTO producto (ID_P,ID_cliente, dimension, cantidad, precio) VALUES (?,?,?,?,?)";
+    private static final String SQL_INSERT="INSERT INTO producto (ID_P, dimension, precio,nombre) VALUES (?,?,?,?)";
     private static final String SQL_DELETE="DELETE FROM producto WHERE ID_P = ?";
     private static final String SQL_UPDATE="UPDATE producto set ID_cliente=?, dimension=?, cantidad=?, precio=?  ID_ WHERE ID_P= ?";
     private static final String SQL_READ="SELECT * FROM producto where ID_P = ?";
     private static final String SQL_READ_Nombre="SELECT * FROM producto where nombre = ?";
     private static final String SQL_INSERT_Login="INSERT INTO login (ID_VENDEDOR, calve,correo) VALUES (?,?,?)";
+    private static  final String SQL_INSERT_COLOR="INSERT INTO color (ID_color,ID_p,color) VALUES (null,?,?)";
+    private static  final String SQL_INSERT_MATERIAL="INSERT INTO material (ID_material,ID_p,material) VALUES (null,?,?)";
+    private static  final String SQL_INSERT_TIPO="INSERT INTO tipo (ID_tipo,ID_p,tipo) VALUES (null,?,?)";
+    private static  final String SQL_INSERT_distribuye="INSERT INTO distribuye VALUES (?,?,?)";
+    
     
     private Connection con= conexion.obtenerConexion();
     
@@ -77,10 +83,9 @@ public class ProductoDAO {
          try {
             ps= con.prepareStatement(SQL_INSERT);
             ps.setInt(1, c.getID_P());
-            ps.setInt(2, c.getID_cliente());
-            ps.setString(3, c.getDimension());
-            ps.setInt(4, c.getCantidad());
-            ps.setInt(5, c.getPrecio());
+            ps.setString(2, c.getDimension());
+            ps.setInt(3, c.getPrecio());
+            ps.setString(4, c.getNombre());
             if(ps.executeUpdate()>0){
                 return true;
             }
@@ -91,6 +96,71 @@ public class ProductoDAO {
         }
         return false;
     }
+   public boolean insertColor(Producto c){
+        PreparedStatement ps;
+         try {
+            ps= con.prepareStatement(SQL_INSERT_COLOR);
+            ps.setInt(1, c.getID_P());
+            ps.setString(2, c.getColor());
+            if(ps.executeUpdate()>0){
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error crear producto: "+ex.getMessage());
+        }finally{
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+   public boolean insertMaterial(Producto c){
+        PreparedStatement ps;
+         try {
+            ps= con.prepareStatement(SQL_INSERT_MATERIAL);
+            ps.setInt(1, c.getID_P());
+            ps.setString(2, c.getMaterial());
+            if(ps.executeUpdate()>0){
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error crear producto: "+ex.getMessage());
+        }finally{
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+   public boolean insertTipo(Producto c){
+        PreparedStatement ps;
+         try {
+            ps= con.prepareStatement(SQL_INSERT_TIPO);
+            ps.setInt(1, c.getID_P());
+            ps.setString(2, c.getTipo());
+            if(ps.executeUpdate()>0){
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error crear producto: "+ex.getMessage());
+        }finally{
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+   public boolean distrubuye(Producto p, Provedor po){
+               PreparedStatement ps;
+         try {
+            ps= con.prepareStatement(SQL_INSERT_distribuye);
+            ps.setInt(1, po.getID_PR());
+            ps.setInt(2, p.getID_P());
+            ps.setInt(3, p.getCantidad());
+            if(ps.executeUpdate()>0){
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error crear producto: "+ex.getMessage());
+        }finally{
+            conexion.cerrarConexion();
+        }
+        return false;
+   }
    
     public List<Producto> getProducto(){
         List<Producto> listProductos=null;

@@ -22,6 +22,39 @@ public class FacadeProducto {
         }
         return rta;
     }
+     public boolean CrearColor(Producto objP){
+        boolean rta=false;
+        if(objP !=null){
+            ProductoDAO dao= new ProductoDAO();
+            rta= dao.insertColor(objP);
+        }
+        return rta;
+    }
+    public boolean CrearMaterial(Producto objP){
+        boolean rta=false;
+        if(objP !=null){
+            ProductoDAO dao= new ProductoDAO();
+            rta= dao.insertMaterial(objP);
+        }
+        return rta;
+    }
+    public boolean CrearTipo(Producto objP){
+        boolean rta=false;
+        if(objP !=null){
+            ProductoDAO dao= new ProductoDAO();
+            rta= dao.insertTipo(objP);
+        }
+        return rta;
+    }
+    
+    public boolean distribuye(Producto objP, Provedor p){
+        boolean rta=false;
+        if(objP !=null){
+            ProductoDAO dao= new ProductoDAO();
+            rta= dao.distrubuye(objP,p);
+        }
+        return rta;
+    }
     
     public List<Producto> ListarProductos(){
         List<Producto> lst= null;
