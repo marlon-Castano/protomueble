@@ -21,6 +21,9 @@ import Modelo.cliente;
 import Modelo.factura;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -299,6 +302,11 @@ public class AdminDB1 extends javax.swing.JFrame {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/idea.png"))); // NOI18N
         jPanel6.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, -1, -1));
 
+        txt_CorreoRV.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_CorreoRVFocusLost(evt);
+            }
+        });
         txt_CorreoRV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_CorreoRVActionPerformed(evt);
@@ -314,6 +322,12 @@ public class AdminDB1 extends javax.swing.JFrame {
 
         jLabel14.setText("Clave");
         jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+
+        txt_IdentificacionRV.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_IdentificacionRVKeyTyped(evt);
+            }
+        });
         jPanel6.add(txt_IdentificacionRV, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 110, -1));
 
         jLabel17.setText("Identificacion");
@@ -327,6 +341,12 @@ public class AdminDB1 extends javax.swing.JFrame {
         });
         jPanel6.add(btn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
         jPanel6.add(labelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 180, 30));
+
+        txt_NombreRv1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_NombreRv1KeyTyped(evt);
+            }
+        });
         jPanel6.add(txt_NombreRv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 110, -1));
 
         jLabel18.setText("Nombre");
@@ -351,12 +371,22 @@ public class AdminDB1 extends javax.swing.JFrame {
                 txtIdentificacionProActionPerformed(evt);
             }
         });
+        txtIdentificacionPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdentificacionProKeyTyped(evt);
+            }
+        });
 
         jLabel19.setText("Nombre");
 
         txtNombrePro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreProActionPerformed(evt);
+            }
+        });
+        txtNombrePro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProKeyTyped(evt);
             }
         });
 
@@ -375,12 +405,22 @@ public class AdminDB1 extends javax.swing.JFrame {
                 txtContactoProActionPerformed(evt);
             }
         });
+        txtContactoPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContactoProKeyTyped(evt);
+            }
+        });
 
         jLabel24.setText("telefono");
 
         txtTelefonoPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoProActionPerformed(evt);
+            }
+        });
+        txtTelefonoPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoProKeyTyped(evt);
             }
         });
 
@@ -394,12 +434,22 @@ public class AdminDB1 extends javax.swing.JFrame {
                 txtNombreProducActionPerformed(evt);
             }
         });
+        txtNombreProduc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProducKeyTyped(evt);
+            }
+        });
 
         jLabel29.setText("Precio");
 
         txtPrecioProduc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioProducActionPerformed(evt);
+            }
+        });
+        txtPrecioProduc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioProducKeyTyped(evt);
             }
         });
 
@@ -416,6 +466,11 @@ public class AdminDB1 extends javax.swing.JFrame {
                 txtMaterialProducActionPerformed(evt);
             }
         });
+        txtMaterialProduc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMaterialProducKeyTyped(evt);
+            }
+        });
 
         jLabel31.setText("Material");
 
@@ -426,12 +481,22 @@ public class AdminDB1 extends javax.swing.JFrame {
                 txtColorProducActionPerformed(evt);
             }
         });
+        txtColorProduc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtColorProducKeyTyped(evt);
+            }
+        });
 
         jLabel33.setText("Tipo");
 
         txtTipoProduc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTipoProducActionPerformed(evt);
+            }
+        });
+        txtTipoProduc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoProducKeyTyped(evt);
             }
         });
 
@@ -449,12 +514,22 @@ public class AdminDB1 extends javax.swing.JFrame {
                 txtCantidadproActionPerformed(evt);
             }
         });
+        txtCantidadpro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadproKeyTyped(evt);
+            }
+        });
 
         jLabel34.setText("Numero de referencia");
 
         txtNumeroRef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroRefActionPerformed(evt);
+            }
+        });
+        txtNumeroRef.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroRefKeyTyped(evt);
             }
         });
 
@@ -702,7 +777,7 @@ public class AdminDB1 extends javax.swing.JFrame {
             .addGroup(pnconfigLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel8.add(pnconfig, "card3");
@@ -859,8 +934,112 @@ public class AdminDB1 extends javax.swing.JFrame {
     private void txtNumeroRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroRefActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroRefActionPerformed
+
+    private void txt_IdentificacionRVKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_IdentificacionRVKeyTyped
+        char c = evt.getKeyChar();
+        
+        if(c < '0' || c > '9') evt.consume();        
+    }//GEN-LAST:event_txt_IdentificacionRVKeyTyped
+
+    private void txtIdentificacionProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionProKeyTyped
+ char c = evt.getKeyChar();
+        
+        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdentificacionProKeyTyped
+
+    private void txtTelefonoProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProKeyTyped
+ char c = evt.getKeyChar();
+        
+        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoProKeyTyped
+
+    private void txtNumeroRefKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroRefKeyTyped
+ char c = evt.getKeyChar();
+        
+        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroRefKeyTyped
+
+    private void txtPrecioProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioProducKeyTyped
+ char c = evt.getKeyChar();
+        
+        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioProducKeyTyped
+
+    private void txtNombreProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProKeyTyped
+ char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreProKeyTyped
+
+    private void txtContactoProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoProKeyTyped
+ char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContactoProKeyTyped
+
+    private void txtNombreProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProducKeyTyped
+ char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreProducKeyTyped
+
+    private void txtMaterialProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaterialProducKeyTyped
+ char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaterialProducKeyTyped
+
+    private void txtColorProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColorProducKeyTyped
+ char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtColorProducKeyTyped
+
+    private void txtTipoProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoProducKeyTyped
+ char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoProducKeyTyped
+
+    private void txtCantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadproKeyTyped
+    char c = evt.getKeyChar();
+        
+        if(c < '0' || c > '9') evt.consume();    // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadproKeyTyped
+
+    private void txt_NombreRv1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NombreRv1KeyTyped
+char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();         // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NombreRv1KeyTyped
+
+    private void txt_CorreoRVFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_CorreoRVFocusLost
+         if(Email(this.txt_CorreoRV.getText())){
+        
+    }else{
+        JOptionPane.showMessageDialog(null, "Correo incorrecto","Error", JOptionPane.INFORMATION_MESSAGE);
+        this.txt_CorreoRV.requestFocus();
+    }
+    }//GEN-LAST:event_txt_CorreoRVFocusLost
     
+    public static boolean Email (String email) {
+
+    // Establecer el patron
+    Pattern p = null;
+    p =Pattern.compile("[-\\w\\.]+@[\\.\\w]+\\.\\w+");
+
+    // Asociar el string al patron
+    Matcher m = null;
+    m= p.matcher(email);
     
+    if(m.find()){
+        return true;
+    }else{
+        return false;
+    }
+
+   // Comprobar si encaja
+}
     private boolean insertarProductos(Producto produc,Provedor prove){
         boolean res = false;
         FacadeProveedor proDAO = new FacadeProveedor();
