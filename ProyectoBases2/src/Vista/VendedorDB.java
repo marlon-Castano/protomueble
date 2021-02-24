@@ -109,6 +109,7 @@ public class VendedorDB extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         CheckCiudad = new javax.swing.JCheckBox();
         labelTotal = new javax.swing.JLabel();
+        lblCaracteristicas = new javax.swing.JLabel();
         pnconfig = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -386,9 +387,19 @@ public class VendedorDB extends javax.swing.JFrame {
         jPanel6.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 110, -1));
 
         jLabel19.setText("Productos");
-        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
 
-        jPanel6.add(boxproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 180, -1));
+        boxproducto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                boxproductoItemStateChanged(evt);
+            }
+        });
+        boxproducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boxproductoMouseClicked(evt);
+            }
+        });
+        jPanel6.add(boxproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 180, -1));
 
         jLabel20.setText("Envio ");
         jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
@@ -415,6 +426,9 @@ public class VendedorDB extends javax.swing.JFrame {
         });
         jPanel6.add(CheckCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
         jPanel6.add(labelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 180, 30));
+
+        lblCaracteristicas.setText("jLabel24");
+        jPanel6.add(lblCaracteristicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 290, 100));
 
         jTabbedPane1.addTab("Registrar Venta", jPanel6);
 
@@ -686,6 +700,14 @@ public class VendedorDB extends javax.swing.JFrame {
        
        
     }//GEN-LAST:event_btneditarActionPerformed
+
+    private void boxproductoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxproductoItemStateChanged
+       
+    }//GEN-LAST:event_boxproductoItemStateChanged
+
+    private void boxproductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxproductoMouseClicked
+        lblCaracteristicas.setText("holii");
+    }//GEN-LAST:event_boxproductoMouseClicked
     
     public static boolean Email (String email) {
 
@@ -834,6 +856,7 @@ public class VendedorDB extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelTotal;
+    private javax.swing.JLabel lblCaracteristicas;
     private javax.swing.JLabel nombre_vendedor;
     private javax.swing.JPanel pnconfig;
     private javax.swing.JPanel pndash;
