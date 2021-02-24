@@ -14,16 +14,9 @@ import java.util.List;
  */
 public class FacadeVendedor {
     
-    public boolean CrearCliente(Vendedor objP){
-        boolean rta=false;
-        if(objP !=null){
-            VendedorDAO dao= new VendedorDAO();
-            rta= dao.insert(objP);
-        }
-        return rta;
-    }
+   
     
-    public List<Vendedor> ListarClientes(){
+    public List<Vendedor> ListarVendedor(){
         List<Vendedor> lst= null;
         VendedorDAO dao= new VendedorDAO();
         lst=dao.getVendedores();
@@ -50,7 +43,7 @@ public class FacadeVendedor {
         return dto;
     }
     
-    public boolean ActualizarCliente (Vendedor actual){
+    public boolean ActualizarVendedor (Vendedor actual){
       boolean rta=false;
       if(actual!=null){
           VendedorDAO dao= new VendedorDAO();

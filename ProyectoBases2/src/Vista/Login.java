@@ -156,7 +156,8 @@ public class Login extends javax.swing.JFrame {
             this.dispose();
           
         }else{
-            JOptionPane.showConfirmDialog(null, "clave o correo incorrectos ");
+            JOptionPane.showMessageDialog(null, "Clave o Correo incorrecto", "ERROR", JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog( null, "clave o correo incorrectos ");
         }
     }
     

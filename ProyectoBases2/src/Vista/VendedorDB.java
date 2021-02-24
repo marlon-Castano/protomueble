@@ -7,15 +7,20 @@ package Vista;
 
 import Modelo.DAO.ClienteDAO;
 import Modelo.DAO.FacturaDAO;
+import Modelo.DAO.LoginDAO;
 import Modelo.FacadeCliente;
 import Modelo.FacadeFactura;
 import Modelo.FacadeProducto;
+import Modelo.FacadeVendedor;
 import Modelo.Vendedor;
 import Modelo.Producto;
 import Modelo.cliente;
 import Modelo.factura;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,6 +36,7 @@ public class VendedorDB extends javax.swing.JFrame {
 
     public VendedorDB() {
         initComponents();
+        
         this.setLocationRelativeTo(null);
     }
 
@@ -43,6 +49,9 @@ public class VendedorDB extends javax.swing.JFrame {
         for (Producto p : facaP.ListarProductos()) {
             boxproducto.addItem(p.getNombre());
         }
+        
+       this.Identificacion.setText(""+vende.getID());
+
     }
 
     /**
@@ -118,7 +127,6 @@ public class VendedorDB extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(255, 204, 255));
         jLabel2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Vendedor ProntoMueble");
         jLabel2.setOpaque(true);
@@ -323,6 +331,11 @@ public class VendedorDB extends javax.swing.JFrame {
                 txt_IdentificacionActionPerformed(evt);
             }
         });
+        txt_Identificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_IdentificacionKeyTyped(evt);
+            }
+        });
         jPanel6.add(txt_Identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 110, -1));
 
         jLabel6.setText("Gestion de Clientes");
@@ -336,10 +349,26 @@ public class VendedorDB extends javax.swing.JFrame {
                 txt_nombreActionPerformed(evt);
             }
         });
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
         jPanel6.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 110, -1));
 
         jLabel14.setText("Nombre");
         jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+
+        txt_correo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_correoFocusLost(evt);
+            }
+        });
+        txt_correo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_correoKeyTyped(evt);
+            }
+        });
         jPanel6.add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 110, -1));
 
         jLabel17.setText("Correo");
@@ -348,6 +377,12 @@ public class VendedorDB extends javax.swing.JFrame {
         jLabel18.setText("Direccion");
         jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
         jPanel6.add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 110, -1));
+
+        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telefonoKeyTyped(evt);
+            }
+        });
         jPanel6.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 110, -1));
 
         jLabel19.setText("Productos");
@@ -421,9 +456,20 @@ public class VendedorDB extends javax.swing.JFrame {
 
         jLabel25.setText("Contraseña");
 
+        txt_NombreV.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_NombreVKeyTyped(evt);
+            }
+        });
+
         Identificacion.setEnabled(false);
 
         btneditar.setText("Aceptar");
+        btneditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -485,7 +531,7 @@ public class VendedorDB extends javax.swing.JFrame {
             .addGroup(pnconfigLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel8.add(pnconfig, "card3");
@@ -544,6 +590,8 @@ public class VendedorDB extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_IdentificacionActionPerformed
 
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
+
+        
         String nombre, correo, direcion, telefono, producto;
 
         int indetenficacion = Integer.parseInt(this.txt_Identificacion.getText());
@@ -551,6 +599,11 @@ public class VendedorDB extends javax.swing.JFrame {
         correo = txt_correo.getText();
         direcion = txt_direccion.getText();
         telefono = txt_telefono.getText();
+        
+  
+        
+        
+        
         producto = (String) this.boxproducto.getSelectedItem();
         boolean envio = check_envio.isSelected();
         boolean lugar = CheckCiudad.isSelected();
@@ -573,6 +626,86 @@ public class VendedorDB extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btn_registrarActionPerformed
+
+    private void txt_IdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_IdentificacionKeyTyped
+        char c = evt.getKeyChar();
+        
+        if(c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_IdentificacionKeyTyped
+
+    private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
+        char c = evt.getKeyChar();
+        
+        if(c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_telefonoKeyTyped
+
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+        char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();
+    }//GEN-LAST:event_txt_nombreKeyTyped
+
+    private void txt_NombreVKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NombreVKeyTyped
+     char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();
+    }//GEN-LAST:event_txt_NombreVKeyTyped
+
+    private void txt_correoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_correoKeyTyped
+        
+    }//GEN-LAST:event_txt_correoKeyTyped
+
+    private void txt_correoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_correoFocusLost
+    //checkEmail();
+    if(Email(this.txt_correo.getText())){
+        
+    }else{
+        JOptionPane.showMessageDialog(null, "Correo incorrecto","Error", JOptionPane.INFORMATION_MESSAGE);
+        this.txt_correo.requestFocus();
+    }
+    
+    }//GEN-LAST:event_txt_correoFocusLost
+
+    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
+       String nombre = this.txt_NombreV.getText();
+       String clave = this.contraseña_V.getText();
+       int id= vendedor.getID();
+       String correo= vendedor.getCorreo();
+       
+       Vendedor ven = new Vendedor();
+       FacadeVendedor ob = new FacadeVendedor();
+       LoginDAO dao = new LoginDAO();
+       
+       ven.setID(id);
+       ven.setNombre(nombre);
+       ven.setCorreo(correo);
+       ven.setClave(clave);
+       
+       dao.update_Login(ven);
+       ob.ActualizarVendedor(ven);
+       
+       
+    }//GEN-LAST:event_btneditarActionPerformed
+    
+    public static boolean Email (String email) {
+
+    // Establecer el patron
+    Pattern p = null;
+    p =Pattern.compile("[-\\w\\.]+@[\\.\\w]+\\.\\w+");
+
+    // Asociar el string al patron
+    Matcher m = null;
+    m= p.matcher(email);
+    
+    if(m.find()){
+        return true;
+    }else{
+        return false;
+    }
+
+   // Comprobar si encaja
+}
+    
     
     
     private void cagarTabla() {

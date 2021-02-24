@@ -25,7 +25,7 @@ public class VendedorDAO {
     private static final String SQL_READ_ALL = "SELECT * FROM vendedor";
     private static final String SQL_INSERT = "INSERT INTO vendedor (ID, nombre) VALUES (?,?)";
     private static final String SQL_DELETE = "DELETE FROM vendedor WHERE ID = ?";
-    private static final String SQL_UPDATE = "UPDATE vendedor set  ID_factura= ?, nombre =? WHERE ID = ?";
+    private static final String SQL_UPDATE = "UPDATE vendedor set  nombre =? WHERE ID = ?";
     private static final String SQL_READ = "SELECT * FROM vendedor where ID = ?";
  
     private static final String SQL_VERIFICAR_LOGIN = "SELECT * FROM login WHERE correo = ?";
@@ -114,9 +114,8 @@ public class VendedorDAO {
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(SQL_UPDATE);
-            ps.setInt(1, item.getID_factura());
-            ps.setString(2, item.getNombre());
-            ps.setInt(3, item.getID());
+            ps.setString(1, item.getNombre());
+            ps.setInt(2, item.getID());
             ps.execute();
             return true;
         } catch (SQLException ex) {
