@@ -42,6 +42,7 @@ public class AdminDB1 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cargartabla();
         cargartablaVendedor();
+        cargartablaVentas();
     }
 
 
@@ -128,6 +129,10 @@ public class AdminDB1 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaVendedores = new javax.swing.JTable();
         btnEditarVendedor = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TablaVentas = new javax.swing.JTable();
         pnconfig = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -815,6 +820,45 @@ public class AdminDB1 extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Ver Vendedores", jPanel10);
 
+        jLabel37.setFont(new java.awt.Font("Yu Gothic UI", 0, 36)); // NOI18N
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setText("Ventas");
+
+        TablaVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(TablaVentas);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+                .addGap(36, 36, 36))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Ver Ventas", jPanel11);
+
         javax.swing.GroupLayout pndashLayout = new javax.swing.GroupLayout(pndash);
         pndash.setLayout(pndashLayout);
         pndashLayout.setHorizontalGroup(
@@ -1239,6 +1283,20 @@ public class AdminDB1 extends javax.swing.JFrame {
             }
         }
     }
+    private void cargartablaVentas(){
+        FacadeFactura objF = new FacadeFactura();
+        List<String> lista = objF.TraerFacturaInfo();
+        DefaultTableModel tb = (DefaultTableModel) this.TablaVentas.getModel();
+        tb.getDataVector().clear();
+        tb.setColumnIdentifiers(new String[]{
+            "id", "Envio", "Precio Total", "Fecha","vendedor","Producto"});
+        if (lista != null) {
+            for (String i : lista) {
+                String[] parts = i.split(",");
+                tb.addRow(new Object[]{parts[0],parts[1],parts[2],parts[3],parts[4],parts[5]});
+            }
+        }
+    }
     public static boolean Email (String email) {
 
     // Establecer el patron
@@ -1317,6 +1375,7 @@ public class AdminDB1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Identificacion;
     private javax.swing.JTable TablaVendedores;
+    private javax.swing.JTable TablaVentas;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JLabel btnConfig;
     private javax.swing.JLabel btnDash;
@@ -1357,6 +1416,7 @@ public class AdminDB1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1365,6 +1425,7 @@ public class AdminDB1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1375,6 +1436,7 @@ public class AdminDB1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelTotal;
     private javax.swing.JPasswordField pass_RV;

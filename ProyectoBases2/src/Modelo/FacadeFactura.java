@@ -30,6 +30,13 @@ public class FacadeFactura {
         return lst;
     }
     
+    public List<String> TraerFacturaInfo(){
+        List<String> lst= null;
+        FacturaDAO dao= new FacturaDAO();
+        lst=dao.getInfo();
+        return lst;
+    }
+    
     public factura verFactura(factura item){
         factura dto;
         FacturaDAO dao = new FacturaDAO();
