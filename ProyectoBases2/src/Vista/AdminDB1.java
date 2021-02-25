@@ -41,6 +41,7 @@ public class AdminDB1 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargartabla();
+        cargartablaVendedor();
     }
 
 
@@ -125,9 +126,9 @@ public class AdminDB1 extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        TablaVendedores = new javax.swing.JTable();
+        btnEditarVendedor = new javax.swing.JButton();
+        btnEliminarVendedor = new javax.swing.JButton();
         pnconfig = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -764,7 +765,7 @@ public class AdminDB1 extends javax.swing.JFrame {
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel36.setText(" Vendedores");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaVendedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -775,11 +776,16 @@ public class AdminDB1 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(TablaVendedores);
 
-        jButton1.setText("jButton1");
+        btnEditarVendedor.setText("Editar");
+        btnEditarVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarVendedorActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        btnEliminarVendedor.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -794,10 +800,10 @@ public class AdminDB1 extends javax.swing.JFrame {
                 .addComponent(jScrollPane2)
                 .addContainerGap())
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addComponent(jButton1)
-                .addGap(95, 95, 95)
-                .addComponent(jButton2)
+                .addGap(228, 228, 228)
+                .addComponent(btnEditarVendedor)
+                .addGap(72, 72, 72)
+                .addComponent(btnEliminarVendedor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -809,8 +815,8 @@ public class AdminDB1 extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnEditarVendedor)
+                    .addComponent(btnEliminarVendedor))
                 .addGap(39, 39, 39))
         );
 
@@ -1178,6 +1184,10 @@ public class AdminDB1 extends javax.swing.JFrame {
             this.txt_CorreoRV.requestFocus();
         }
     }//GEN-LAST:event_txt_CorreoRVFocusLost
+
+    private void btnEditarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVendedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarVendedorActionPerformed
     
     private void editarProducto(){
         int fila = tablaProductos.getSelectedRow();
@@ -1210,6 +1220,19 @@ public class AdminDB1 extends javax.swing.JFrame {
             for (Producto i : lista) {
                     tb.addRow(new Object[]{i.getID_P(), i, i.getDimension(), i.getMaterial(),i.getColor(),i.getTipo()
                     , i.getCantidad(), i.getPrecio(), i.isEstado()});
+            }
+        }
+    }
+    private void cargartablaVendedor(){
+        FacadeVendedor objF = new FacadeVendedor();
+        List<Vendedor> lista = objF.ListarVendedor();
+        DefaultTableModel tb = (DefaultTableModel) this.TablaVendedores.getModel();
+        tb.getDataVector().clear();
+        tb.setColumnIdentifiers(new String[]{
+            "id", "Nombre", "Correo"});
+        if (lista != null) {
+            for (Vendedor i : lista) {
+                    tb.addRow(new Object[]{i.getID(), i, i.getCorreo()});
             }
         }
     }
@@ -1290,17 +1313,18 @@ public class AdminDB1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Identificacion;
+    private javax.swing.JTable TablaVendedores;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JLabel btnConfig;
     private javax.swing.JLabel btnDash;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEditarVendedor;
+    private javax.swing.JButton btnEliminarVendedor;
     private javax.swing.JLabel btnExit;
     private javax.swing.JButton btnIngresarProductos;
     private javax.swing.JButton btn_registrar;
     private javax.swing.JButton btneditar;
     private javax.swing.JPasswordField contraseña_V;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1350,7 +1374,6 @@ public class AdminDB1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelTotal;
     private javax.swing.JPasswordField pass_RV;
     private javax.swing.JPanel pnconfig;

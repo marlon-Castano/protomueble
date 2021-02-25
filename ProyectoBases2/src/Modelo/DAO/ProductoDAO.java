@@ -137,7 +137,7 @@ public class ProductoDAO {
         } catch (SQLException ex) {
             System.out.println("Error altulizar producto " + ex.getMessage());
         } finally {
-            conexion.cerrarConexion();
+           //conexion.cerrarConexion();
         }
         return false;
     }
@@ -154,7 +154,7 @@ public class ProductoDAO {
         } catch (SQLException ex) {
             System.out.println("Error update color " + ex.getMessage());
         } finally {
-           conexion.cerrarConexion();
+          // conexion.cerrarConexion();
         }
         return false;
     }
@@ -170,7 +170,7 @@ public class ProductoDAO {
         } catch (SQLException ex) {
             System.out.println("Error update material " + ex.getMessage());
         } finally {
-            conexion.cerrarConexion();
+           // conexion.cerrarConexion();
         }
         return false;
     }

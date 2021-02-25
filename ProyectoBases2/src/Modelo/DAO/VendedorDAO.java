@@ -22,7 +22,9 @@ import java.util.logging.Logger;
  */
 public class VendedorDAO {
 
-    private static final String SQL_READ_ALL = "SELECT * FROM vendedor";
+    private static final String SQL_READ_ALL = "select vendedor.*, login.correo, login.clave\n" +
+    "from vendedor INNER JOIN login ON login.ID_VENDEDOR=vendedor.ID \n" +
+    "where vendedor.ID=vendedor.ID;";
     private static final String SQL_INSERT = "INSERT INTO vendedor (ID, nombre) VALUES (?,?)";
     private static final String SQL_DELETE = "DELETE FROM vendedor WHERE ID = ?";
     private static final String SQL_UPDATE = "UPDATE vendedor set  nombre =? WHERE ID = ?";
@@ -82,7 +84,7 @@ public class VendedorDAO {
                 ResultSet rs = psmt.executeQuery();
                 listProductos = new ArrayList<>();
                 while (rs.next()) {
-                    Vendedor aux = new Vendedor(rs.getInt("ID"), rs.getString("nombre"));
+                    Vendedor aux = new Vendedor(rs.getInt("ID"), rs.getString("nombre"),rs.getString("correo"),rs.getString("clave"));
                     listProductos.add(aux);
                 }
             } catch (SQLException ex) {

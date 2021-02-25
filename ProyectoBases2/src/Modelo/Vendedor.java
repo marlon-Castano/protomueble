@@ -10,7 +10,7 @@ package Modelo;
  * @author alche
  */
 public class Vendedor {
-    int ID=0;
+    int ID;
     int ID_factura=0;
     String Clave;
     String Correo;
@@ -19,6 +19,14 @@ public class Vendedor {
     public Vendedor() {
     }
 
+    public Vendedor(int ID,String Nombre,String Correo,String Clave ) {
+        this.ID = ID;
+        this.Clave = Clave;
+        this.Correo = Correo;
+        this.Nombre = Nombre;
+    }
+
+    
     public Vendedor(int ID, int ID_factura, String Clave, String Correo, String Nombre) {
         this.ID = ID;
         this.ID_factura = ID_factura;
@@ -98,7 +106,7 @@ public class Vendedor {
 
     @Override
     public String toString() {
-        return "Vendedor{" + "ID=" + ID + ", ID_factura=" + ID_factura + ", Clave=" + Clave + ", Correo=" + Correo + ", Nombre=" + Nombre + '}';
+        return Nombre;
     }
     
     
