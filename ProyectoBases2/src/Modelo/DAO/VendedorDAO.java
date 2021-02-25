@@ -28,6 +28,7 @@ public class VendedorDAO {
     private static final String SQL_INSERT = "INSERT INTO vendedor (ID, nombre) VALUES (?,?)";
     private static final String SQL_DELETE = "DELETE FROM vendedor WHERE ID = ?";
     private static final String SQL_UPDATE = "UPDATE vendedor set  nombre =? WHERE ID = ?";
+    private static final String SQL_UPDATE_login = "UPDATE login set  correo =?, clave=? WHERE ID_VENDEDOR = ?";
     private static final String SQL_READ = "SELECT * FROM vendedor where ID = ?";
  
     private static final String SQL_VERIFICAR_LOGIN = "SELECT * FROM login WHERE correo = ?";
@@ -118,6 +119,22 @@ public class VendedorDAO {
             ps = con.prepareStatement(SQL_UPDATE);
             ps.setString(1, item.getNombre());
             ps.setInt(2, item.getID());
+            ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            //conexion.cerrarConexion();
+        }
+        return false;
+    }
+    public boolean updateLogin(Vendedor item) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_UPDATE_login);
+            ps.setString(1, item.getCorreo());
+            ps.setString(2, item.getClave());
+            ps.setInt(3, item.getID());
             ps.execute();
             return true;
         } catch (SQLException ex) {

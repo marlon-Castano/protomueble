@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import Modelo.FacadeVendedor;
+import Modelo.Vendedor;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -14,9 +18,21 @@ public class EditarVendedor extends javax.swing.JDialog {
     /**
      * Creates new form EditarVendedor
      */
+    
+    Vendedor  ven= new Vendedor();
     public EditarVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    public EditarVendedor(java.awt.Frame parent, Vendedor ven, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        this.ven=ven;
+        if(ven!=null){
+            txtNombreVendedor.setText(ven.getNombre());
+            txtCorreo.setText(ven.getCorreo());
+            contrasenaVEn.setText(ven.getClave());
+        }
     }
 
     /**
@@ -30,105 +46,47 @@ public class EditarVendedor extends javax.swing.JDialog {
 
         jPanel2 = new javax.swing.JPanel();
         lblproceso = new javax.swing.JLabel();
-        txtTipoProduc = new javax.swing.JTextField();
-        jLabel33 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        txtColorProduc = new javax.swing.JTextField();
-        txtMaterialProduc = new javax.swing.JTextField();
-        jLabel31 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        txtDimensionProduc = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
-        txtPrecioProduc = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        txtNombreProduc = new javax.swing.JTextField();
+        txtNombreVendedor = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
-        txtDisponible = new javax.swing.JTextField();
-        jLabel34 = new javax.swing.JLabel();
         lblID = new javax.swing.JLabel();
+        contrasenaVEn = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBackground(java.awt.Color.white);
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Producto"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Vendedor"));
 
         lblproceso.setBackground(new java.awt.Color(122, 146, 212));
         lblproceso.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblproceso.setForeground(new java.awt.Color(255, 255, 255));
         lblproceso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblproceso.setText("Producto");
+        lblproceso.setText("Vendedor");
         lblproceso.setOpaque(true);
 
-        txtTipoProduc.addActionListener(new java.awt.event.ActionListener() {
+        jLabel32.setText("Clave");
+
+        jLabel30.setText("Correo");
+
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTipoProducActionPerformed(evt);
-            }
-        });
-        txtTipoProduc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtTipoProducKeyTyped(evt);
-            }
-        });
-
-        jLabel33.setText("Tipo");
-
-        jLabel32.setText("color");
-
-        txtColorProduc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtColorProducActionPerformed(evt);
-            }
-        });
-        txtColorProduc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtColorProducKeyTyped(evt);
-            }
-        });
-
-        txtMaterialProduc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaterialProducActionPerformed(evt);
-            }
-        });
-        txtMaterialProduc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtMaterialProducKeyTyped(evt);
-            }
-        });
-
-        jLabel31.setText("Material");
-
-        jLabel30.setText("Dimension");
-
-        txtDimensionProduc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDimensionProducActionPerformed(evt);
-            }
-        });
-
-        jLabel29.setText("Precio");
-
-        txtPrecioProduc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecioProducActionPerformed(evt);
-            }
-        });
-        txtPrecioProduc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPrecioProducKeyTyped(evt);
+                txtCorreoActionPerformed(evt);
             }
         });
 
         jLabel28.setText("Nombre");
 
-        txtNombreProduc.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreVendedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreProducActionPerformed(evt);
+                txtNombreVendedorActionPerformed(evt);
             }
         });
-        txtNombreProduc.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombreVendedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreProducKeyTyped(evt);
+                txtNombreVendedorKeyTyped(evt);
             }
         });
 
@@ -140,18 +98,7 @@ public class EditarVendedor extends javax.swing.JDialog {
             }
         });
 
-        txtDisponible.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDisponibleActionPerformed(evt);
-            }
-        });
-        txtDisponible.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDisponibleKeyTyped(evt);
-            }
-        });
-
-        jLabel34.setText("Cantidad Disponible");
+        contrasenaVEn.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,206 +106,93 @@ public class EditarVendedor extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblproceso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(29, 29, 29)
-                        .addComponent(txtColorProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDimensionProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(15, 15, 15)
-                        .addComponent(txtNombreProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(29, 29, 29)
-                        .addComponent(txtDisponible, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
+                    .addComponent(lblproceso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 181, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnAceptar)
+                                .addGap(220, 220, 220)
+                                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(9, 9, 9)))
-                                .addGap(23, 23, 23)
+                                    .addComponent(jLabel32)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(66, 66, 66)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrecioProduc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                    .addComponent(txtMaterialProduc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(41, 41, 41)
-                                .addComponent(txtTipoProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)))
-                        .addGap(117, 117, 117))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(btnAceptar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(contrasenaVEn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombreVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(146, 146, 146))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(lblproceso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblproceso)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNombreProduc)
-                        .addComponent(txtPrecioProduc))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(txtNombreVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtDimensionProduc)
-                        .addComponent(txtMaterialProduc))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtColorProduc)
-                                .addComponent(txtTipoProduc)))
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(btnAceptar)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel30))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(contrasenaVEn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAceptar))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtTipoProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoProducActionPerformed
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTipoProducActionPerformed
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
-    private void txtTipoProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoProducKeyTyped
+    private void txtNombreVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreVendedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreVendedorActionPerformed
+
+    private void txtNombreVendedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreVendedorKeyTyped
         char c = evt.getKeyChar();
 
         if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTipoProducKeyTyped
-
-    private void txtColorProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColorProducActionPerformed
-
-    private void txtColorProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColorProducKeyTyped
-        char c = evt.getKeyChar();
-
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColorProducKeyTyped
-
-    private void txtMaterialProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaterialProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaterialProducActionPerformed
-
-    private void txtMaterialProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaterialProducKeyTyped
-        char c = evt.getKeyChar();
-
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaterialProducKeyTyped
-
-    private void txtDimensionProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDimensionProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDimensionProducActionPerformed
-
-    private void txtPrecioProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioProducActionPerformed
-
-    private void txtPrecioProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioProducKeyTyped
-        char c = evt.getKeyChar();
-
-        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioProducKeyTyped
-
-    private void txtNombreProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreProducActionPerformed
-
-    private void txtNombreProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProducKeyTyped
-        char c = evt.getKeyChar();
-
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreProducKeyTyped
+    }//GEN-LAST:event_txtNombreVendedorKeyTyped
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        /*String nombre,dimension,color,tipo,material;
-        int disponible=0;
 
-        objP.setNombre(txtNombreProduc.getText());
-        objP.setDimension(txtDimensionProduc.getText());
-        objP.setColor(txtColorProduc.getText());
-        objP.setTipo(txtTipoProduc.getText());
-        objP.setMaterial(txtMaterialProduc.getText());
-        objP.setCantidad(Integer.parseInt(txtDisponible.getText()));
-        FacadeProducto produDAO = new FacadeProducto();
-        if(produDAO.update(objP)){
-            JOptionPane.showMessageDialog(null, "se actulizo el producto");
+        ven.setNombre(txtNombreVendedor.getText());
+        ven.setCorreo(txtCorreo.getText());
+        ven.setClave(contrasenaVEn.getText());
+        FacadeVendedor facaV= new FacadeVendedor();
+        boolean vali=facaV.ActualizarVendedor(ven);
+        if(vali){
+            JOptionPane.showMessageDialog(null, "se actulizo el Vendedor");
             dispose();
         }else{
-            JOptionPane.showMessageDialog(null, "se actulizo el producto","ERROR",ERROR);
-        }*/
+            JOptionPane.showMessageDialog(null, "se actulizo el Vendedor");
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void txtDisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDisponibleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDisponibleActionPerformed
-
-    private void txtDisponibleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDisponibleKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDisponibleKeyTyped
 
     /**
      * @param args the command line arguments
@@ -404,22 +238,14 @@ public class EditarVendedor extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JPasswordField contrasenaVEn;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblproceso;
-    private javax.swing.JTextField txtColorProduc;
-    private javax.swing.JTextField txtDimensionProduc;
-    private javax.swing.JTextField txtDisponible;
-    private javax.swing.JTextField txtMaterialProduc;
-    private javax.swing.JTextField txtNombreProduc;
-    private javax.swing.JTextField txtPrecioProduc;
-    private javax.swing.JTextField txtTipoProduc;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtNombreVendedor;
     // End of variables declaration//GEN-END:variables
 }

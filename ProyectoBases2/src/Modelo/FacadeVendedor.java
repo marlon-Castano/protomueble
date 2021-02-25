@@ -48,6 +48,9 @@ public class FacadeVendedor {
       if(actual!=null){
           VendedorDAO dao= new VendedorDAO();
           rta=dao.update(actual);
+          if(rta){
+              rta=dao.updateLogin(actual);
+          }
       }
       
         return rta;

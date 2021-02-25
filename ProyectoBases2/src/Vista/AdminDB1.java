@@ -128,7 +128,6 @@ public class AdminDB1 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaVendedores = new javax.swing.JTable();
         btnEditarVendedor = new javax.swing.JButton();
-        btnEliminarVendedor = new javax.swing.JButton();
         pnconfig = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -785,8 +784,6 @@ public class AdminDB1 extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarVendedor.setText("Eliminar");
-
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -799,12 +796,10 @@ public class AdminDB1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2)
                 .addContainerGap())
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(228, 228, 228)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEditarVendedor)
-                .addGap(72, 72, 72)
-                .addComponent(btnEliminarVendedor)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(310, 310, 310))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -813,11 +808,9 @@ public class AdminDB1 extends javax.swing.JFrame {
                 .addComponent(jLabel36)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarVendedor)
-                    .addComponent(btnEliminarVendedor))
-                .addGap(39, 39, 39))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(btnEditarVendedor)
+                .addGap(38, 38, 38))
         );
 
         jTabbedPane1.addTab("Ver Vendedores", jPanel10);
@@ -1186,7 +1179,7 @@ public class AdminDB1 extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_CorreoRVFocusLost
 
     private void btnEditarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVendedorActionPerformed
-        // TODO add your handling code here:
+        editarVendedor();
     }//GEN-LAST:event_btnEditarVendedorActionPerformed
     
     private void editarProducto(){
@@ -1198,6 +1191,16 @@ public class AdminDB1 extends javax.swing.JFrame {
             ventana.setVisible(true);
             cargartabla();
             
+        }
+    }
+    private void editarVendedor(){
+        int fila = TablaVendedores.getSelectedRow();
+        if (fila >= 0) {
+            DefaultTableModel tb = (DefaultTableModel) this.TablaVendedores.getModel();
+            Vendedor objS= (Vendedor) TablaVendedores.getValueAt(fila, 1);
+            EditarVendedor ventana = new EditarVendedor(this,objS,true);
+            ventana.setVisible(true);
+            cargartablaVendedor();
         }
     }
     private void cambiarEstado(){
@@ -1319,7 +1322,6 @@ public class AdminDB1 extends javax.swing.JFrame {
     private javax.swing.JLabel btnDash;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEditarVendedor;
-    private javax.swing.JButton btnEliminarVendedor;
     private javax.swing.JLabel btnExit;
     private javax.swing.JButton btnIngresarProductos;
     private javax.swing.JButton btn_registrar;
