@@ -12,7 +12,7 @@ package Modelo;
 public class Producto {
     private String dimension;
     private int ID_P;
-    private int ID_cliente;
+    private int ID_PR;
     private String Color;
     private int cantidad;
     private int Precio;
@@ -21,6 +21,17 @@ public class Producto {
     private String nombre;
 
     public Producto() {
+    }
+
+    public Producto(String dimension, int ID_P, String Color, int cantidad, int Precio, String material, String tipo, String nombre) {
+        this.dimension = dimension;
+        this.ID_P = ID_P;
+        this.Color = Color;
+        this.cantidad = cantidad;
+        this.Precio = Precio;
+        this.material = material;
+        this.tipo = tipo;
+        this.nombre = nombre;
     }
 
     public Producto(String dimension, int ID_P, int Precio, String nombre) {
@@ -39,10 +50,10 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public Producto(String dimension, int ID_P, int ID_cliente, String Color, int cantidad, int Precio, String material, String tipo) {
+    public Producto(String dimension, int ID_P, int ID_PR, String Color, int cantidad, int Precio, String material, String tipo) {
         this.dimension = dimension;
         this.ID_P = ID_P;
-        this.ID_cliente = ID_cliente;
+        this.ID_PR = ID_PR;
         this.Color = Color;
         this.cantidad = cantidad;
         this.Precio = Precio;
@@ -50,17 +61,17 @@ public class Producto {
         this.tipo = tipo;
     }
 
-    public Producto(int ID_cliente,String dimension, int cantidad, int Precio) {
+    public Producto(int ID_PR,String dimension, int cantidad, int Precio) {
         this.dimension = dimension;
-        this.ID_cliente = ID_cliente;
+        this.ID_PR = ID_PR;
         this.cantidad = cantidad;
         this.Precio = Precio;
     }
 
-    public Producto(int ID_P, int ID_cliente,String dimension, int cantidad, int Precio) {
+    public Producto(int ID_P, int ID_PR,String dimension, int cantidad, int Precio) {
         this.dimension = dimension;
         this.ID_P = ID_P;
-        this.ID_cliente = ID_cliente;
+        this.ID_PR = ID_PR;
         this.cantidad = cantidad;
         this.Precio = Precio;
     }
@@ -75,9 +86,9 @@ public class Producto {
     }
 
     
-    public Producto(int ID_P, int ID_cliente, String Color, int cantidad, int Precio, String material, String tipo) {
+    public Producto(int ID_P, int ID_PR, String Color, int cantidad, int Precio, String material, String tipo) {
         this.ID_P = ID_P;
-        this.ID_cliente = ID_cliente;
+        this.ID_PR = ID_PR;
         this.Color = Color;
         this.cantidad = cantidad;
         this.Precio = Precio;
@@ -93,9 +104,9 @@ public class Producto {
         this.tipo = tipo;
     }
 
-    public Producto(int ID_P, int ID_cliente) {
+    public Producto(int ID_P, int ID_PR) {
         this.ID_P = ID_P;
-        this.ID_cliente = ID_cliente;
+        this.ID_PR = ID_PR;
     }
 
     public Producto(int ID_P) {
@@ -111,12 +122,12 @@ public class Producto {
         this.ID_P = ID_P;
     }
 
-    public int getID_cliente() {
-        return ID_cliente;
+    public int getID_PR() {
+        return ID_PR;
     }
 
-    public void setID_cliente(int ID_cliente) {
-        this.ID_cliente = ID_cliente;
+    public void setID_PR(int ID_PR) {
+        this.ID_PR = ID_PR;
     }
 
     public String getColor() {
@@ -161,7 +172,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "producto{" + "dimension=" + dimension + ", ID_P=" + ID_P + ", ID_cliente=" + ID_cliente + ", Color=" + Color + ", cantidad=" + cantidad + ", Precio=" + Precio + ", material=" + material + ", tipo=" + tipo + '}';
+        return  nombre;
     }
     
     

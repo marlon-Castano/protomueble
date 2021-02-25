@@ -24,7 +24,15 @@ public class ProductoDAO {
     private static final String SQL_READ_ALL = "SELECT * FROM producto ";
     private static final String SQL_INSERT = "INSERT INTO producto (ID_P, dimension, precio,nombre) VALUES (?,?,?,?)";
     private static final String SQL_DELETE = "DELETE FROM producto WHERE ID_P = ?";
-    private static final String SQL_UPDATE = "UPDATE producto set ID_cliente=?, dimension=?, cantidad=?, precio=?  ID_ WHERE ID_P= ?";
+    private static final String SQL_DELETE_COLOR = "DELETE FROM color WHERE ID_p = ?";
+    private static final String SQL_DELETE_MATERIAL = "DELETE FROM material WHERE ID_p = ?";
+    private static final String SQL_DELETE_TIPO = "DELETE FROM tipo WHERE ID_p = ?";
+    private static final String SQL_DELETE_DISTRIBULLE = "DELETE FROM distribuye WHERE ID_p = ?";
+    private static final String SQL_UPDATE = "UPDATE producto set nombre=?, dimension=?, precio=? WHERE ID_P= ?";
+    private static final String SQL_UPDATE_COLOR = "UPDATE color set color=? WHERE ID_P= ?";
+    private static final String SQL_UPDATE_TIPO = "UPDATE tipo set tipo=? WHERE ID_P= ?";
+    private static final String SQL_UPDATE_MATERIAL = "UPDATE material set material=? WHERE ID_P= ?";
+     private static final String SQL_UPDATE_DISTRUBULLE= "UPDATE distribuye set cantidad=? WHERE ID_P= ?";
     private static final String SQL_READ = "SELECT * FROM producto where ID_P = ?";
     private static final String SQL_READ_Nombre = "SELECT * FROM producto where nombre = ?";
     private static final String SQL_INSERT_Login = "INSERT INTO login (ID_VENDEDOR, calve,correo) VALUES (?,?,?)";
@@ -37,6 +45,11 @@ public class ProductoDAO {
             + "INNER JOIN material ON material.ID_P=producto.ID_P \n"
             + "INNER JOIN tipo ON tipo.ID_P=producto.ID_P \n"
             + "INNER JOIN distribuye ON distribuye.ID_P=producto.ID_P where producto.ID_P=?";
+    private static final String SQL_READ_ALL_INFO = "select producto.*, color.color, material.material, tipo.tipo, distribuye.cantidad \n"
+            + "from producto INNER JOIN color ON color.ID_P=producto.ID_P \n"
+            + "INNER JOIN material ON material.ID_P=producto.ID_P \n"
+            + "INNER JOIN tipo ON tipo.ID_P=producto.ID_P \n"
+            + "INNER JOIN distribuye ON distribuye.ID_P=producto.ID_P where producto.ID_P=producto.ID_P";
 
     private Connection con = conexion.obtenerConexion();
 
@@ -109,6 +122,90 @@ public class ProductoDAO {
         }
         return objres;
     }
+    public boolean update(Producto c) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_UPDATE);
+            ps.setString(1, c.getNombre());
+            ps.setString(2, c.getDimension());
+            ps.setInt(3, c.getPrecio());
+            ps.setInt(4, c.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error altulizar producto " + ex.getMessage());
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+    
+    public boolean updateColor(Producto c) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_UPDATE_COLOR);
+            ps.setString(1, c.getColor());
+            ps.setInt(2, c.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error update color " + ex.getMessage());
+        } finally {
+           conexion.cerrarConexion();
+        }
+        return false;
+    }
+    public boolean updateMaterial(Producto c) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_UPDATE_MATERIAL);
+            ps.setString(1, c.getMaterial());
+            ps.setInt(2, c.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error update material " + ex.getMessage());
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+     public boolean updateTipo(Producto c) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_UPDATE_TIPO);
+            ps.setString(1, c.getTipo());
+            ps.setInt(2, c.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error update tipo " + ex.getMessage());
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+     public boolean updateDistribulle(Producto c) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_UPDATE_DISTRUBULLE);
+            ps.setInt(1, c.getCantidad());
+            ps.setInt(2, c.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error update distrubulle " + ex.getMessage());
+        } finally {
+            //conexion.cerrarConexion();
+        }
+        return false;
+    }
+
 
     public boolean insert(Producto c) {
         PreparedStatement ps;
@@ -233,6 +330,88 @@ public class ProductoDAO {
             conexion.cerrarConexion();
         }
         return false;
+    }
+    public boolean deleteColor(Producto item) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_DELETE_COLOR);
+            ps.setInt(1, item.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al borrar Color: " + ex.getMessage());
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+    public boolean deleteMaterial(Producto item) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_DELETE_MATERIAL);
+            ps.setInt(1, item.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al borrar Material: " + ex.getMessage());
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+     public boolean deleteTipo(Producto item) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_DELETE_TIPO);
+            ps.setInt(1, item.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al borrar Tipo: " + ex.getMessage());
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+    public boolean deleteCantidad(Producto item) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_DELETE_DISTRIBULLE);
+            ps.setInt(1, item.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al borrar Distribuye: " + ex.getMessage());
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return false;
+    }
+    
+    public List<Producto> getInfoProducto() {
+        List<Producto> listProductos = null;
+        if (con != null) {
+            PreparedStatement psmt;
+            try {
+                psmt = con.prepareStatement(SQL_READ_ALL_INFO);
+                ResultSet rs = psmt.executeQuery();
+                listProductos = new ArrayList<>();
+                while (rs.next()) {
+                    Producto aux = new Producto(rs.getString("dimension"), rs.getInt("ID_P"), rs.getString("color"), rs.getInt("cantidad"),
+                            rs.getInt("precio"), rs.getString("material"), rs.getString("tipo"), rs.getString("nombre"));
+                    listProductos.add(aux);
+                }
+            } catch (SQLException ex) {
+                System.out.println("Error obtener productos: " + ex.getMessage());
+            } finally {
+                conexion.cerrarConexion();
+            }
+        }
+        return listProductos;
     }
 
 }
