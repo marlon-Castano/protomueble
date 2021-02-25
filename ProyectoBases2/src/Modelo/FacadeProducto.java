@@ -150,4 +150,17 @@ public class FacadeProducto {
         return res;
     }
 
+    public boolean updateEstado(Producto objS) {
+        boolean res;
+        ProductoDAO dao = new ProductoDAO();
+        if(objS.isEstado()==true){
+            objS.setEstado(false);
+        }else{
+            objS.setEstado(true);
+        }
+        res=dao.updateEstado(objS);
+
+        return res;
+    }
+
 }

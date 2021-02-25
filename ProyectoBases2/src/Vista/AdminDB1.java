@@ -690,7 +690,7 @@ public class AdminDB1 extends javax.swing.JFrame {
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Ingresar Productos", jPanel4);
+        jTabbedPane1.addTab("Agregar Provedor", jPanel4);
 
         jPanel9.setBackground(java.awt.Color.white);
 
@@ -719,7 +719,7 @@ public class AdminDB1 extends javax.swing.JFrame {
         });
 
         btnBorrar.setBackground(new java.awt.Color(255, 0, 0));
-        btnBorrar.setText("Borrar");
+        btnBorrar.setText("Cambiar estado");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
@@ -964,84 +964,40 @@ public class AdminDB1 extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnExitMouseClicked
 
-    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
-        String nombre, correo, clave;
-        
-        int ID = Integer.parseInt(this.txt_IdentificacionRV.getText());
-        nombre = txt_NombreRv1.getText();
-        correo = txt_CorreoRV.getText();
-        clave = pass_RV.getText();
-        
-        Vendedor vendedor2 = new Vendedor (ID,nombre);
-        vendedor2.setCorreo(correo);
-        vendedor2.setClave(clave);
-        FacadeVendedor facaV = new FacadeVendedor();
-        
-        
-        if(facaV.Crearvendedor(vendedor2)){
-            System.out.println(vendedor2.getCorreo());
-            LoginDAO obDAO = new LoginDAO();
-            obDAO.insertLogin(vendedor2);
-        }
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        cambiarEstado();
+        cargartabla();
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        editarProducto();
+        cargartabla();
+    }//GEN-LAST:event_btnEditarActionPerformed
 
-    }//GEN-LAST:event_btn_registrarActionPerformed
+    private void txtNumeroRefKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroRefKeyTyped
+        char c = evt.getKeyChar();
 
-    private void txt_CorreoRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CorreoRVActionPerformed
+        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroRefKeyTyped
+
+    private void txtNumeroRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroRefActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_CorreoRVActionPerformed
+    }//GEN-LAST:event_txtNumeroRefActionPerformed
 
-    private void pass_RVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass_RVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pass_RVActionPerformed
+    private void txtCantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadproKeyTyped
+        char c = evt.getKeyChar();
 
-    private void txtIdentificacionProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdentificacionProActionPerformed
+        if(c < '0' || c > '9') evt.consume();    // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadproKeyTyped
 
-    private void txtNombreProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProActionPerformed
+    private void txtCantidadproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadproActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreProActionPerformed
-
-    private void txtDireccionProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionProActionPerformed
-
-    private void txtContactoProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactoProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContactoProActionPerformed
-
-    private void txtTelefonoProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoProActionPerformed
-
-    private void txtNombreProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreProducActionPerformed
-
-    private void txtPrecioProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioProducActionPerformed
-
-    private void txtDimensionProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDimensionProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDimensionProducActionPerformed
-
-    private void txtMaterialProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaterialProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaterialProducActionPerformed
-
-    private void txtColorProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColorProducActionPerformed
-
-    private void txtTipoProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoProducActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTipoProducActionPerformed
+    }//GEN-LAST:event_txtCantidadproActionPerformed
 
     private void btnIngresarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarProductosActionPerformed
         String nombreProv, direcion, contacto, telefono, nombrePro, dimension, material, color, tipo;
         int precio, numeroID, cantidad, numref;
+        /////////////provedor
         numeroID=Integer.parseInt(txtIdentificacionPro.getText());
         nombreProv=txtNombrePro.getText();
         direcion=txtDireccionPro.getText();
@@ -1049,6 +1005,7 @@ public class AdminDB1 extends javax.swing.JFrame {
         telefono=txtTelefonoPro.getText();
         Provedor prove= new Provedor(numeroID, nombreProv, direcion, contacto);
         prove.setTelefono(telefono);
+        ////////////////producto
         nombrePro=txtNombreProduc.getText();
         precio=Integer.parseInt(txtPrecioProduc.getText());
         dimension=txtDimensionProduc.getText();
@@ -1063,9 +1020,10 @@ public class AdminDB1 extends javax.swing.JFrame {
         pro.setTipo(tipo);
         pro.setCantidad(cantidad);
         pro.setMaterial(material);
+        pro.setEstado(true);
         //////////////////////////////insercion a la  base de datos
-        
-        if(insertarProductos(pro, prove)){
+
+        if(insertarProducto(pro,prove)){
             JOptionPane.showMessageDialog(null, "Datos Ingresados");
             cargartabla();
         }else{
@@ -1073,110 +1031,153 @@ public class AdminDB1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIngresarProductosActionPerformed
 
-    private void txtCantidadproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadproActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadproActionPerformed
-
-    private void txtNumeroRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroRefActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroRefActionPerformed
-
-    private void txt_IdentificacionRVKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_IdentificacionRVKeyTyped
-        char c = evt.getKeyChar();
-        
-        if(c < '0' || c > '9') evt.consume();        
-    }//GEN-LAST:event_txt_IdentificacionRVKeyTyped
-
-    private void txtIdentificacionProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionProKeyTyped
- char c = evt.getKeyChar();
-        
-        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdentificacionProKeyTyped
-
-    private void txtTelefonoProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProKeyTyped
- char c = evt.getKeyChar();
-        
-        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoProKeyTyped
-
-    private void txtNumeroRefKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroRefKeyTyped
- char c = evt.getKeyChar();
-        
-        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroRefKeyTyped
-
-    private void txtPrecioProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioProducKeyTyped
- char c = evt.getKeyChar();
-        
-        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioProducKeyTyped
-
-    private void txtNombreProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProKeyTyped
- char c = evt.getKeyChar();
-        
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreProKeyTyped
-
-    private void txtContactoProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoProKeyTyped
- char c = evt.getKeyChar();
-        
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContactoProKeyTyped
-
-    private void txtNombreProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProducKeyTyped
- char c = evt.getKeyChar();
-        
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreProducKeyTyped
-
-    private void txtMaterialProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaterialProducKeyTyped
- char c = evt.getKeyChar();
-        
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaterialProducKeyTyped
-
-    private void txtColorProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColorProducKeyTyped
- char c = evt.getKeyChar();
-        
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColorProducKeyTyped
-
     private void txtTipoProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoProducKeyTyped
- char c = evt.getKeyChar();
-        
+        char c = evt.getKeyChar();
+
         if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
     }//GEN-LAST:event_txtTipoProducKeyTyped
 
-    private void txtCantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadproKeyTyped
-    char c = evt.getKeyChar();
-        
-        if(c < '0' || c > '9') evt.consume();    // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadproKeyTyped
+    private void txtTipoProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoProducActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoProducActionPerformed
+
+    private void txtColorProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColorProducKeyTyped
+        char c = evt.getKeyChar();
+
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtColorProducKeyTyped
+
+    private void txtColorProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorProducActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtColorProducActionPerformed
+
+    private void txtMaterialProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaterialProducKeyTyped
+        char c = evt.getKeyChar();
+
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaterialProducKeyTyped
+
+    private void txtMaterialProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaterialProducActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaterialProducActionPerformed
+
+    private void txtDimensionProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDimensionProducActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDimensionProducActionPerformed
+
+    private void txtPrecioProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioProducKeyTyped
+        char c = evt.getKeyChar();
+
+        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioProducKeyTyped
+
+    private void txtPrecioProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioProducActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioProducActionPerformed
+
+    private void txtNombreProducKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProducKeyTyped
+        char c = evt.getKeyChar();
+
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreProducKeyTyped
+
+    private void txtNombreProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProducActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreProducActionPerformed
+
+    private void txtTelefonoProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProKeyTyped
+        char c = evt.getKeyChar();
+
+        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoProKeyTyped
+
+    private void txtTelefonoProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoProActionPerformed
+
+    private void txtContactoProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoProKeyTyped
+        char c = evt.getKeyChar();
+
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContactoProKeyTyped
+
+    private void txtContactoProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactoProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContactoProActionPerformed
+
+    private void txtDireccionProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionProActionPerformed
+
+    private void txtNombreProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProKeyTyped
+        char c = evt.getKeyChar();
+
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreProKeyTyped
+
+    private void txtNombreProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreProActionPerformed
+
+    private void txtIdentificacionProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionProKeyTyped
+        char c = evt.getKeyChar();
+
+        if(c < '0' || c > '9') evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdentificacionProKeyTyped
+
+    private void txtIdentificacionProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdentificacionProActionPerformed
+
+    private void pass_RVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass_RVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pass_RVActionPerformed
 
     private void txt_NombreRv1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NombreRv1KeyTyped
-char c = evt.getKeyChar();
-        
+        char c = evt.getKeyChar();
+
         if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();         // TODO add your handling code here:
     }//GEN-LAST:event_txt_NombreRv1KeyTyped
 
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
+        String nombre, correo, clave;
+
+        int ID = Integer.parseInt(this.txt_IdentificacionRV.getText());
+        nombre = txt_NombreRv1.getText();
+        correo = txt_CorreoRV.getText();
+        clave = pass_RV.getText();
+
+        Vendedor vendedor2 = new Vendedor (ID,nombre);
+        vendedor2.setCorreo(correo);
+        vendedor2.setClave(clave);
+        FacadeVendedor facaV = new FacadeVendedor();
+
+        if(facaV.Crearvendedor(vendedor2)){
+            System.out.println(vendedor2.getCorreo());
+            LoginDAO obDAO = new LoginDAO();
+            obDAO.insertLogin(vendedor2);
+        }
+
+    }//GEN-LAST:event_btn_registrarActionPerformed
+
+    private void txt_IdentificacionRVKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_IdentificacionRVKeyTyped
+        char c = evt.getKeyChar();
+
+        if(c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_IdentificacionRVKeyTyped
+
+    private void txt_CorreoRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CorreoRVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_CorreoRVActionPerformed
+
     private void txt_CorreoRVFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_CorreoRVFocusLost
-         if(Email(this.txt_CorreoRV.getText())){
-        
-    }else{
-        JOptionPane.showMessageDialog(null, "Correo incorrecto","Error", JOptionPane.INFORMATION_MESSAGE);
-        this.txt_CorreoRV.requestFocus();
-    }
+        if(Email(this.txt_CorreoRV.getText())){
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Correo incorrecto","Error", JOptionPane.INFORMATION_MESSAGE);
+            this.txt_CorreoRV.requestFocus();
+        }
     }//GEN-LAST:event_txt_CorreoRVFocusLost
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        EliminarProducto();
-        cargartabla();
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        editarProducto();
-        cargartabla();
-    }//GEN-LAST:event_btnEditarActionPerformed
     
     private void editarProducto(){
         int fila = tablaProductos.getSelectedRow();
@@ -1189,13 +1190,13 @@ char c = evt.getKeyChar();
             
         }
     }
-    private void EliminarProducto(){
+    private void cambiarEstado(){
         int fila = tablaProductos.getSelectedRow();
         if (fila >= 0) {
             DefaultTableModel tb = (DefaultTableModel) this.tablaProductos.getModel();
             Producto objS= (Producto) tablaProductos.getValueAt(fila, 1);
             FacadeProducto objF = new FacadeProducto();
-            objF.EliminarProducto(objS);
+            objF.updateEstado(objS);
         }
     }
     private void cargartabla(){
@@ -1204,11 +1205,11 @@ char c = evt.getKeyChar();
         DefaultTableModel tb = (DefaultTableModel) this.tablaProductos.getModel();
         tb.getDataVector().clear();
         tb.setColumnIdentifiers(new String[]{
-            "id", "Nombre", "Dimension", "Material","Color","Tipo","Unidades Disponibles","Precio"});
+            "id", "Nombre", "Dimension", "Material","Color","Tipo","Unidades Disponibles","Precio","Estado"});
         if (lista != null) {
             for (Producto i : lista) {
-                    tb.addRow(new Object[]{i.getNombre(), i, i.getDimension(), i.getMaterial(),i.getColor(),i.getTipo()
-                    , i.getCantidad(), i.getPrecio()});
+                    tb.addRow(new Object[]{i.getID_P(), i, i.getDimension(), i.getMaterial(),i.getColor(),i.getTipo()
+                    , i.getCantidad(), i.getPrecio(), i.isEstado()});
             }
         }
     }
@@ -1230,14 +1231,15 @@ char c = evt.getKeyChar();
 
    // Comprobar si encaja
 }
-    private boolean insertarProductos(Producto produc,Provedor prove){
+    private boolean insertarProducto(Producto produc, Provedor prove){
         boolean res = false;
         FacadeProveedor proDAO = new FacadeProveedor();
-        FacadeProducto produDAO = new FacadeProducto();
+        
         
         if(proDAO.CrearProveedor(prove)){
             res=proDAO.CrearTelefono(prove);
         }
+        FacadeProducto produDAO = new FacadeProducto();
         if(produDAO.CrearProducto(produc)){
             res=produDAO.CrearColor(produc);
             res=produDAO.CrearMaterial(produc);
@@ -1246,8 +1248,10 @@ char c = evt.getKeyChar();
         if(res){
             res=produDAO.distribuye(produc, prove);
         }
+        
         return res;
     }
+  
     /**
      * @param args the command line arguments
      */

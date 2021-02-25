@@ -22,13 +22,14 @@ import java.util.List;
 public class ProductoDAO {
 
     private static final String SQL_READ_ALL = "SELECT * FROM producto ";
-    private static final String SQL_INSERT = "INSERT INTO producto (ID_P, dimension, precio,nombre) VALUES (?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO producto (ID_P, dimension, precio,nombre,estado) VALUES (?,?,?,?,?)";
     private static final String SQL_DELETE = "DELETE FROM producto WHERE ID_P = ?";
     private static final String SQL_DELETE_COLOR = "DELETE FROM color WHERE ID_p = ?";
     private static final String SQL_DELETE_MATERIAL = "DELETE FROM material WHERE ID_p = ?";
     private static final String SQL_DELETE_TIPO = "DELETE FROM tipo WHERE ID_p = ?";
     private static final String SQL_DELETE_DISTRIBULLE = "DELETE FROM distribuye WHERE ID_p = ?";
     private static final String SQL_UPDATE = "UPDATE producto set nombre=?, dimension=?, precio=? WHERE ID_P= ?";
+    private static final String SQL_UPDATE_ESTADO = "UPDATE producto set estado=? WHERE ID_P= ?";
     private static final String SQL_UPDATE_COLOR = "UPDATE color set color=? WHERE ID_P= ?";
     private static final String SQL_UPDATE_TIPO = "UPDATE tipo set tipo=? WHERE ID_P= ?";
     private static final String SQL_UPDATE_MATERIAL = "UPDATE material set material=? WHERE ID_P= ?";
@@ -215,6 +216,7 @@ public class ProductoDAO {
             ps.setString(2, c.getDimension());
             ps.setInt(3, c.getPrecio());
             ps.setString(4, c.getNombre());
+            ps.setBoolean(5, c.isEstado());
             if (ps.executeUpdate() > 0) {
                 return true;
             }
@@ -401,8 +403,11 @@ public class ProductoDAO {
                 ResultSet rs = psmt.executeQuery();
                 listProductos = new ArrayList<>();
                 while (rs.next()) {
+                  
                     Producto aux = new Producto(rs.getString("dimension"), rs.getInt("ID_P"), rs.getString("color"), rs.getInt("cantidad"),
-                            rs.getInt("precio"), rs.getString("material"), rs.getString("tipo"), rs.getString("nombre"));
+                            rs.getInt("precio"), rs.getString("material"), rs.getString("tipo"), rs.getString("nombre"),rs.getBoolean("estado"));
+                    
+                    System.out.println("estado"+rs.getBoolean("estado"));
                     listProductos.add(aux);
                 }
             } catch (SQLException ex) {
@@ -412,6 +417,23 @@ public class ProductoDAO {
             }
         }
         return listProductos;
+    }
+
+    public boolean updateEstado(Producto objS) {
+       PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(SQL_UPDATE_ESTADO);
+            ps.setBoolean(1, objS.isEstado());
+            ps.setInt(2, objS.getID_P());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error update distrubulle " + ex.getMessage());
+        } finally {
+            //conexion.cerrarConexion();
+        }
+        return false;
     }
 
 }

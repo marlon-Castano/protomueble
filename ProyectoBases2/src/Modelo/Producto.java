@@ -19,6 +19,27 @@ public class Producto {
     private String material;
     private String tipo;
     private String nombre;
+    private boolean estado;
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Producto(String dimension, int ID_P, String Color, int cantidad, int Precio, String material, String tipo, String nombre, boolean estado) {
+        this.dimension = dimension;
+        this.ID_P = ID_P;
+        this.Color = Color;
+        this.cantidad = cantidad;
+        this.Precio = Precio;
+        this.material = material;
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.estado=estado;
+    }
 
     public Producto() {
     }
