@@ -60,6 +60,15 @@ public class Producto {
         this.ID_P = ID_P;
         this.Precio = Precio;
         this.nombre = nombre;
+        this.estado=estado;
+    }
+    public Producto(String dimension, int ID_P, int Precio, String nombre, boolean estado, int cantidad) {
+        this.dimension = dimension;
+        this.ID_P = ID_P;
+        this.Precio = Precio;
+        this.nombre = nombre;
+        this.estado=estado;
+        this.cantidad=cantidad;
     }
     
 

@@ -5,10 +5,13 @@
         <group>
             <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/DAO/ProvedorDAO.java</file>
             <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Vista/AdminDB1.java</file>
-            <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/DAO/ProductoDAO.java</file>
-            <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/FacadeProducto.java</file>
-            <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/conexion.java</file>
+            <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/FacadeFactura.java</file>
+            <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/Provedor.java</file>
+            <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/DAO/VendedorDAO.java</file>
+            <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/DAO/FacturaDAO.java</file>
             <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Vista/EditarProducto.java</file>
+            <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/Vendedor.java</file>
+            <file>file:/F:/UD%202020-3/bd/ProyectoProntoMueble/58/protomueble/ProyectoBases2/src/Modelo/FacadeProveedor.java</file>
         </group>
     </open-files>
 </project-private>

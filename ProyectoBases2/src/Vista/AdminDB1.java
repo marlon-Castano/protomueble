@@ -43,6 +43,7 @@ public class AdminDB1 extends javax.swing.JFrame {
         cargartabla();
         cargartablaVendedor();
         cargartablaVentas();
+        cargartablaProvedor();
     }
 
 
@@ -133,6 +134,10 @@ public class AdminDB1 extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TablaVentas = new javax.swing.JTable();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TablaProvedores = new javax.swing.JTable();
+        jLabel38 = new javax.swing.JLabel();
         pnconfig = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -820,6 +825,8 @@ public class AdminDB1 extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Ver Vendedores", jPanel10);
 
+        jPanel11.setBackground(java.awt.Color.white);
+
         jLabel37.setFont(new java.awt.Font("Yu Gothic UI", 0, 36)); // NOI18N
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel37.setText("Ventas");
@@ -858,6 +865,47 @@ public class AdminDB1 extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Ver Ventas", jPanel11);
+
+        jPanel12.setBackground(java.awt.Color.white);
+
+        TablaProvedores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(TablaProvedores);
+
+        jLabel38.setFont(new java.awt.Font("Yu Gothic UI", 0, 36)); // NOI18N
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel38.setText("Provedores");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Ver Provedores", jPanel12);
 
         javax.swing.GroupLayout pndashLayout = new javax.swing.GroupLayout(pndash);
         pndash.setLayout(pndashLayout);
@@ -1297,6 +1345,19 @@ public class AdminDB1 extends javax.swing.JFrame {
             }
         }
     }
+    private void cargartablaProvedor(){
+        FacadeProveedor objF = new FacadeProveedor();
+        List<Provedor> lista = objF.ListarProvedoresInfo();
+        DefaultTableModel tb = (DefaultTableModel) this.TablaProvedores.getModel();
+        tb.getDataVector().clear();
+        tb.setColumnIdentifiers(new String[]{
+            "Numero ID", "Nombre", "Direccion", "Contacto","Telefono"});
+        if (lista != null) {
+            for (Provedor i : lista) {
+                tb.addRow(new Object[]{i.getID_PR(),i.getNombre(),i.getDirecion(),i.getContacto(),i.getTelefono()});
+            }
+        }
+    }
     public static boolean Email (String email) {
 
     // Establecer el patron
@@ -1374,6 +1435,7 @@ public class AdminDB1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Identificacion;
+    private javax.swing.JTable TablaProvedores;
     private javax.swing.JTable TablaVendedores;
     private javax.swing.JTable TablaVentas;
     private javax.swing.JButton btnBorrar;
@@ -1417,6 +1479,7 @@ public class AdminDB1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1426,6 +1489,7 @@ public class AdminDB1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1437,6 +1501,7 @@ public class AdminDB1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelTotal;
     private javax.swing.JPasswordField pass_RV;

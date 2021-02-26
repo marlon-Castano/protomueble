@@ -30,13 +30,12 @@ public class Provedor {
     }
 
     
-    public Provedor(int ID_PR, String nombre, String direcion, String contacto, String telefono, String cantidad) {
+    public Provedor(int ID_PR, String nombre, String direcion, String contacto, String telefono) {
         this.ID_PR = ID_PR;
         this.nombre = nombre;
         this.direcion = direcion;
         this.contacto = contacto;
         this.telefono = telefono;
-        this.cantidad = cantidad;
     }
 
     public Provedor(int ID_PR, String nombre, String direcion, String contacto) {

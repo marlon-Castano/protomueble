@@ -38,6 +38,12 @@ public class VendedorDB extends javax.swing.JFrame {
         initComponents();
         
         this.setLocationRelativeTo(null);
+        FacadeProducto facaP = new FacadeProducto();
+        for (Producto p : facaP.ListarProductos()) {
+            if(p.isEstado()==true && p.getCantidad()>0){
+                boxproducto.addItem(p.getNombre());
+            }
+        }
     }
 
     public VendedorDB(Vendedor vende) {
@@ -47,7 +53,9 @@ public class VendedorDB extends javax.swing.JFrame {
         cagarTabla();
         FacadeProducto facaP = new FacadeProducto();
         for (Producto p : facaP.ListarProductos()) {
-            boxproducto.addItem(p.getNombre());
+            if(p.isEstado()==true && p.getCantidad()>0){
+                boxproducto.addItem(p.getNombre());
+            }
         }
         
        this.Identificacion.setText(""+vende.getID());
@@ -426,8 +434,6 @@ public class VendedorDB extends javax.swing.JFrame {
         });
         jPanel6.add(CheckCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
         jPanel6.add(labelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 180, 30));
-
-        lblCaracteristicas.setText("jLabel24");
         jPanel6.add(lblCaracteristicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 280, 180));
 
         jTabbedPane1.addTab("Registrar Venta", jPanel6);
@@ -605,7 +611,7 @@ public class VendedorDB extends javax.swing.JFrame {
 
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
 
-        
+        FacadeProducto facaP = new FacadeProducto();
         String nombre, correo, direcion, telefono, producto;
 
         int indetenficacion = Integer.parseInt(this.txt_Identificacion.getText());
@@ -622,18 +628,24 @@ public class VendedorDB extends javax.swing.JFrame {
         boolean envio = check_envio.isSelected();
         boolean lugar = CheckCiudad.isSelected();
         int precio = calcularPrecio(producto, lugar, envio);
+        Producto produc=facaP.verProductoNombre(producto);
         cliente cliente2 = new cliente(indetenficacion, nombre, correo, direcion);
         cliente2.setTelefono(telefono);
         Date fecha0 = new Date();
         java.sql.Date fecha = new java.sql.Date(fecha0.getTime());
-        factura factu = new factura(vendedor.getID(), cliente2.getIdentificacion(), envio, precio, fecha);
+        factura factu = new factura();
+        factu.facturas(vendedor.getID(), cliente2.getIdentificacion(),produc.getID_P(), envio, precio, fecha);
         FacadeFactura facaF = new FacadeFactura();
         FacadeCliente facaC = new FacadeCliente();
         if(exitscliente(cliente2)){
              facaF.CrearFactura(factu);
+             JOptionPane.showMessageDialog(null, "producto Comprado");
+             cagarTabla();
         }else{
             if (facaC.CrearCliente(cliente2)) {
-            facaF.CrearFactura(factu);
+                facaF.CrearFactura(factu);
+                JOptionPane.showMessageDialog(null, "producto Comprado");
+                cagarTabla();
             }
         }
         

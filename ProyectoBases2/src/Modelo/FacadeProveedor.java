@@ -29,6 +29,12 @@ public class FacadeProveedor {
         lst=dao.READALL();
         return lst;
     }
+    public List<Provedor> ListarProvedoresInfo(){
+        List<Provedor> lst= null;
+        ProvedorDAO dao= new ProvedorDAO();
+        lst=dao.READINFO();
+        return lst;
+    }
     
     public Provedor verProvedor(Provedor item){
         Provedor dto;

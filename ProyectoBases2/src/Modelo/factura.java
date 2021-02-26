@@ -16,12 +16,30 @@ public class factura {
     private  int ID_factu;
     private int ID_vendedor;
     private int ID_cliente;
+    private int ID_P;
     private boolean envio;
     private int precio_total;
     private Date fecha;
 
  public factura() {
   }
+
+    public void facturas(int ID_vendedor, int ID_cliente, int ID_P, boolean envio, int precio_total, Date fecha) {
+        this.ID_vendedor = ID_vendedor;
+        this.ID_cliente = ID_cliente;
+        this.ID_P = ID_P;
+        this.envio = envio;
+        this.precio_total = precio_total;
+        this.fecha = fecha;
+    }
+
+    public int getID_P() {
+        return ID_P;
+    }
+
+    public void setID_P(int ID_P) {
+        this.ID_P = ID_P;
+    }
 
     public int getID_vendedor() {
         return ID_vendedor;

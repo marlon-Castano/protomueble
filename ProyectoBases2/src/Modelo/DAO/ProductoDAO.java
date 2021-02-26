@@ -51,6 +51,9 @@ public class ProductoDAO {
             + "INNER JOIN material ON material.ID_P=producto.ID_P \n"
             + "INNER JOIN tipo ON tipo.ID_P=producto.ID_P \n"
             + "INNER JOIN distribuye ON distribuye.ID_P=producto.ID_P where producto.ID_P=producto.ID_P";
+    private static final String SQL_READ_ALL_cantidad ="select producto.*,  distribuye.cantidad \n" +
+"from producto INNER JOIN distribuye ON distribuye.ID_p=producto.ID_P\n" +
+"where producto.ID_P=producto.ID_P";
 
     private Connection con = conexion.obtenerConexion();
 
@@ -302,11 +305,12 @@ public class ProductoDAO {
         if (con != null) {
             PreparedStatement psmt;
             try {
-                psmt = con.prepareStatement(SQL_READ_ALL);
+                psmt = con.prepareStatement(SQL_READ_ALL_cantidad);
                 ResultSet rs = psmt.executeQuery();
                 listProductos = new ArrayList<>();
                 while (rs.next()) {
-                    Producto aux = new Producto(rs.getString("dimension"), rs.getInt("ID_P"), rs.getInt("precio"), rs.getString("nombre"));
+                    Producto aux = new Producto(rs.getString("dimension"), rs.getInt("ID_P"), rs.getInt("precio"), rs.getString("nombre")
+                   ,rs.getBoolean("estado"),rs.getInt("cantidad"));
                     listProductos.add(aux);
                 }
             } catch (SQLException ex) {
