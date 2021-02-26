@@ -9,6 +9,7 @@ import Modelo.Vendedor;
 import Modelo.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ public class LoginDAO {
 
     private static final String SQL_INSERT_Login = "INSERT INTO login (ID_VENDEDOR, clave,correo) VALUES (?,?,?)";
     private static final String SQL_UPDATE_Login = "UPDATE login set correo = ?, clave =? WHERE ID_VENDEDOR = ?";
+    private static final String SQL_READ_ADMIN= "SELECT * FROM administrador   where clave=? AND correo=?";
     private Connection con = conexion.obtenerConexion();
 
     public boolean insertLogin(Vendedor c) {
@@ -61,5 +63,26 @@ public class LoginDAO {
             conexion.cerrarConexion();
         }
         return false;
+    }
+    public boolean READAdministrador(String clave, String correo) {
+        PreparedStatement ps;
+        if (con != null) {
+            try {
+                ps = con.prepareStatement(SQL_READ_ADMIN);
+                ps.setString(1, clave);
+                ps.setString(2, correo);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+            } catch (SQLException ex) {
+                System.out.println("Error al crear login: " + ex.getMessage());
+            } finally {
+                conexion.cerrarConexion();
+            }
+        }
+        return false;
+        
+        
     }
 }

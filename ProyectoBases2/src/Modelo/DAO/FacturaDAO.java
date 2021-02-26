@@ -25,7 +25,7 @@ public class FacturaDAO {
             + "from factura INNER JOIN vendedor ON vendedor.ID=factura.ID_vendedor \n"
             + "INNER JOIN producto ON producto.ID_P=factura.ID_P \n"
             + "where vendedor.ID=vendedor.ID";
-    private static final String SQL_INSERT = "INSERT INTO factura (ID_factu,ID_vendedor,ID_cliente, envio, precio_total, fecha) VALUES (null,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO factura (ID_factu,ID_vendedor,ID_cliente, envio, precio_total, fecha,ID_P) VALUES (null,?,?,?,?,?,?)";
     private static final String SQL_DELETE = "DELETE FROM factura WHERE ID_factu = ?";
     private static final String SQL_UPDATE = "UPDATE factura set  envio =?, precio_total =?, fecha =? WHERE ID_factu = ?";
     private static final String SQL_READ = "SELECT * FROM factura where ID_factu = ?";
@@ -62,6 +62,7 @@ public class FacturaDAO {
             ps.setBoolean(3, c.isEnvio());
             ps.setInt(4, c.getPrecio_total());
             ps.setDate(5, c.getFecha());
+            ps.setInt(6, c.getID_P());
             if (ps.executeUpdate() > 0) {
                 return true;
             }

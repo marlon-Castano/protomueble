@@ -171,7 +171,7 @@ public class VendedorDAO {
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
         } finally {
-            conexion.cerrarConexion();
+          //  conexion.cerrarConexion();
         }
         return null;
     }

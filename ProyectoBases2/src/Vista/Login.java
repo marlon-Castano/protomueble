@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Modelo.DAO.LoginDAO;
 import Modelo.DAO.VendedorDAO;
 import Modelo.Vendedor;
 import java.awt.Graphics;
@@ -140,6 +141,7 @@ public class Login extends javax.swing.JFrame {
         String clave=this.Contraseña.getText();
         
         VendedorDAO obj = new VendedorDAO();
+        LoginDAO objad = new LoginDAO();
         Vendedor obj1 = new Vendedor();
         obj1.setClave(clave);
         obj1.setCorreo(correo);
@@ -155,6 +157,10 @@ public class Login extends javax.swing.JFrame {
             obj2.setVisible(true);
             this.dispose();
           
+        }else if (objad.READAdministrador(clave,correo)){
+            AdminDB1 vistaAd = new AdminDB1();
+            vistaAd.setVisible(true);
+            dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Clave o Correo incorrecto", "ERROR", JOptionPane.WARNING_MESSAGE);
             //JOptionPane.showMessageDialog( null, "clave o correo incorrectos ");
